@@ -9,8 +9,6 @@ import java.util.Scanner;
 
 import rpg.Controllers.*;
 import rpg.Models.*;
-import rpg.Views.*;
-import rpg.Databases.*;
 
 /**
  *
