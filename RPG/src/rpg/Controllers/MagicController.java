@@ -21,7 +21,12 @@ public class MagicController {
             magics[i] = new MagicModel(MagicDatabase.NAME[i], MagicDatabase.TYPE[i], MagicDatabase.LEVEL[i], MagicDatabase.COST[i], MagicDatabase.PWR[i], MagicDatabase.ACC[i], MagicDatabase.ELEMENT[i], MagicDatabase.TARGET[i], MagicDatabase.PRICE[i]);
         }
     }
-    public void printMagic() {
+    public static void printMagic() {
+        System.out.println();
+        System.out.println("**********************************************************************");
+        System.out.println("**                             MAGIC                                **");
+        System.out.println("**********************************************************************");
+        System.out.println();
         for (int i=0;i<magics.length;i++) {
             System.out.println("Name: " + magics[i].name);
             System.out.println("Type: " + magics[i].type);

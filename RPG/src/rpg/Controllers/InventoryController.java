@@ -31,7 +31,12 @@ public class InventoryController {
             inventory[CAT].amount--;
         }
     }
-    public void printInventory() {
+    public static void printInventory() {
+        System.out.println();
+        System.out.println("**********************************************************************");
+        System.out.println("**                           INVENTORY                              **");
+        System.out.println("**********************************************************************");
+        System.out.println();
         for (int i=0;i<1;i++) {
             if (inventory[i].name != null) {
                 System.out.println(inventory[0].name + " : " + inventory[0].amount);

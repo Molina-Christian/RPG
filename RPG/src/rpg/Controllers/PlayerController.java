@@ -22,17 +22,21 @@ public class PlayerController {
         }
     }
     public void printParty() {
-        for (int i = 0; i<players.length; i++) {
-            System.out.println("Name: " + players[i].firstName + " " + players[i].lastName);
-            System.out.println("Nickname: " + players[i].nickName);
-            System.out.println("Level: " + players[i].level);
-            System.out.println("Exp: " + players[i].exp + "/" + players[i].expTo);
-            System.out.println("STR: " + players[i].str);
-            System.out.println("CON: " + players[i].con);
-            System.out.println("DEX: " + players[i].dex);
-            System.out.println("INT: " + players[i].Int);
-            System.out.println("WIS: " + players[i].wis);
-            System.out.println("LUC: " + players[i].luc);
+        for (PlayerModel player : players) {
+            System.out.println("Name: " + player.firstName + " " + player.lastName + " (" + player.nickName + ")");
+            System.out.println("Level: " + player.level);
+            System.out.println("Exp: " + player.exp + "/" + player.expTo);
+            System.out.println("STR: " + player.str);
+            System.out.println("CON: " + player.con);
+            System.out.println("DEX: " + player.dex);
+            System.out.println("INT: " + player.Int);
+            System.out.println("WIS: " + player.wis);
+            System.out.println("LUC: " + player.luc);
+            System.out.println("ATK: " + player.atk);
+            System.out.println("DEF: " + player.def);
+            System.out.println("mATK: " + player.mAtk);
+            System.out.println("mDEF: " + player.mDef);
+            System.out.println("SPD: " + player.spd);
             System.out.println();
         }
     }

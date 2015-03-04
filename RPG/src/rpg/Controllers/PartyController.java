@@ -13,6 +13,7 @@ import java.lang.*;
 import rpg.Databases.PlayerDatabase;
 import rpg.Databases.MobDatabase;
 import rpg.Models.PlayerModel;
+import rpg.Views.AkashicTrials;
 
 /**
  *
@@ -20,256 +21,112 @@ import rpg.Models.PlayerModel;
  */
 public class PartyController {
     Scanner input = new Scanner(System.in);
-    public static String[] party = new String[4];
-    public static int[][] partyNum = new int[4][9];
+    public static String[][] party = new String[1][3];
+    public static int[][] partyNum = new int[1][22];
     public static String[] mobs = new String[6];
     public static int[][] mobsNum = new int[6][9];
     public static int[] turnOrder = new int[10];
     public static int[] temp = new int[10];
     
     public PartyController(PlayerModel hero) { 
-        party[0] = hero.nickName;
+        party[0][0] = hero.firstName;
+        party[0][1] = hero.lastName;
+        party[0][2] = hero.nickName;
         partyNum[0][0] = hero.hp;
         partyNum[0][1] = hero.maxHp;
         partyNum[0][2] = hero.mp;
         partyNum[0][3] = hero.maxMp;
+        partyNum[0][4] = hero.atk;
+        partyNum[0][5] = hero.def;
+        partyNum[0][6] = hero.mAtk;
+        partyNum[0][7] = hero.mDef;
+        partyNum[0][8] = hero.spd;
+        partyNum[0][9] = hero.level;
+        partyNum[0][10] = hero.exp;
+        partyNum[0][11] = hero.expTo;
+        partyNum[0][12] = hero.str;
+        partyNum[0][13] = hero.con;
+        partyNum[0][14] = hero.dex;
+        partyNum[0][15] = hero.Int;
+        partyNum[0][16] = hero.wis;
+        partyNum[0][17] = hero.luc;
+        partyNum[0][18] = hero.fire;
+        partyNum[0][19] = hero.earth;
+        partyNum[0][20] = hero.air;
+        partyNum[0][21] = hero.water;
     }
     
-    public void displayCurrentParty() {
-        for (int i=0;i<4;i++) {
-            System.out.println(party[i]);
-            System.out.println("HP: " + partyNum[i][0] + "/" + partyNum[i][1]);
-            System.out.println("MP: " + partyNum[i][2] + "/" + partyNum[i][3]);
-            System.out.println();
-        }
+    public static void displayCurrentParty() {
         System.out.println();
+        System.out.println("**********************************************************************");
+        System.out.println("**                             STATUS                               **");
+        System.out.println("**********************************************************************");
+        System.out.println();
+        for (int i=0;i<PartyController.party.length;i++) {
+            if (party[i] != null) {
+                System.out.println(party[i][0] + " " + party[i][1] + " (" + party[i][2] + ")");
+                System.out.println("HP:\t" + partyNum[i][0] + "/" + partyNum[i][1]);
+                System.out.println("MP:\t" + partyNum[i][2] + "/" + partyNum[i][3]);
+                System.out.println();
+                System.out.println("Level:\t" + partyNum[i][9]);
+                System.out.println("Exp:\t" + partyNum[i][10] + "/" + partyNum[i][11]);
+                System.out.println();
+                System.out.println("STR: " + partyNum[i][12]);
+                System.out.println("CON: " + partyNum[i][13]);
+                System.out.println("DEX: " + partyNum[i][14]);
+                System.out.println("INT: " + partyNum[i][15]);
+                System.out.println("WIS: " + partyNum[i][16]);
+                System.out.println("LUC: " + partyNum[i][17]);
+                System.out.println();
+                System.out.println("ATK:\t" + partyNum[i][4]);
+                System.out.println("DEF:\t" + partyNum[i][5]);
+                System.out.println("mATK:\t" + partyNum[i][6]);
+                System.out.println("mDEF:\t" + partyNum[i][7]);
+                System.out.println("SPD:\t" + partyNum[i][8]);
+                System.out.println();
+                System.out.println("AFFINITY:");
+                System.out.println("Fire:\t" + partyNum[i][18]);
+                System.out.println("Earth:\t" + partyNum[i][19]);
+                System.out.println("Wind:\t" + partyNum[i][20]);
+                System.out.println("Water:\t" + partyNum[i][21]);
+                System.out.println();
+            }
+        }
     }
     public void swapCharacters() {
         System.out.println("Please select the character to switch...");
         for (int i=0;i<4;i++) {
-            if (party[i] != null) {
-                System.out.println((i+1) + ". " + party[i]);
+            if (party[i][0] != null) {
+                System.out.println((i+1) + ". " + party[i][0]);
             }
         }
         int choice = input.nextInt();
         int choice2;
         Boolean done = false;
         while (!done) {
-            switch (choice) {
-                case 1:
-                    System.out.println("Replace with who?");
-                    for (int i=0;i<PlayerDatabase.NAME.length;i++) {
-                        System.out.println((i+1) + ": " + PlayerDatabase.NAME[i]);
-                    }
-                    choice2 = input.nextInt();
-                    while (!done) {
-                        switch (choice2) {
-                            case 1:
-                                party[0] = PlayerDatabase.NAME[0][2];
-                                partyNum[0][0] = PlayerController.players[0].hp;
-                                partyNum[0][1] = PlayerController.players[0].maxHp;
-                                partyNum[0][2] = PlayerController.players[0].mp;
-                                partyNum[0][3] = PlayerController.players[0].maxMp;
-                                done = true;
-                                break;
-                            case 2:
-                                party[0] = PlayerDatabase.NAME[1][0];
-                                partyNum[0][0] = PlayerController.players[1].hp;
-                                partyNum[0][1] = PlayerController.players[1].maxHp;
-                                partyNum[0][2] = PlayerController.players[1].mp;
-                                partyNum[0][3] = PlayerController.players[1].maxMp;
-                                done = true;
-                                break;
-                            case 3:
-                                party[0] = PlayerDatabase.NAME[2][0];
-                                partyNum[0][0] = PlayerController.players[2].hp;
-                                partyNum[0][1] = PlayerController.players[2].maxHp;
-                                partyNum[0][2] = PlayerController.players[2].mp;
-                                partyNum[0][3] = PlayerController.players[2].maxMp;
-                                done = true;
-                                break;
-                            case 4:
-                                party[0] = PlayerDatabase.NAME[3][0];
-                                partyNum[0][0] = PlayerController.players[3].hp;
-                                partyNum[0][1] = PlayerController.players[3].maxHp;
-                                partyNum[0][2] = PlayerController.players[3].mp;
-                                partyNum[0][3] = PlayerController.players[3].maxMp;
-                                done = true;
-                                break;
-                            case 5:
-                                party[0] = PlayerDatabase.NAME[4][0];
-                                partyNum[0][0] = PlayerController.players[4].hp;
-                                partyNum[0][1] = PlayerController.players[4].maxHp;
-                                partyNum[0][2] = PlayerController.players[4].mp;
-                                partyNum[0][3] = PlayerController.players[4].maxMp;
-                                done = true;
-                                break;
-                            default:
-                                continue;
-                        }
-                    }
-                    break;
-                case 2:
-                    System.out.println("Replace with who?");
-                    for (int i=0;i<PlayerDatabase.NAME.length;i++) {
-                        System.out.println((i+1) + ": " + PlayerDatabase.NAME[i]);
-                    }
-                    choice2 = input.nextInt();
-                    while (!done) {
-                        switch (choice2) {
-                            case 1:
-                                party[1] = PlayerDatabase.NAME[0][2];
-                                partyNum[1][0] = PlayerController.players[0].hp;
-                                partyNum[1][1] = PlayerController.players[0].maxHp;
-                                partyNum[1][2] = PlayerController.players[0].mp;
-                                partyNum[1][3] = PlayerController.players[0].maxMp;
-                                done = true;
-                                break;
-                            case 2:
-                                party[1] = PlayerDatabase.NAME[1][0];
-                                partyNum[1][0] = PlayerController.players[1].hp;
-                                partyNum[1][1] = PlayerController.players[1].maxHp;
-                                partyNum[1][2] = PlayerController.players[1].mp;
-                                partyNum[1][3] = PlayerController.players[1].maxMp;
-                                done = true;
-                                break;
-                            case 3:
-                                party[1] = PlayerDatabase.NAME[2][0];
-                                partyNum[1][0] = PlayerController.players[2].hp;
-                                partyNum[1][1] = PlayerController.players[2].maxHp;
-                                partyNum[1][2] = PlayerController.players[2].mp;
-                                partyNum[1][3] = PlayerController.players[2].maxMp;
-                                done = true;
-                                break;
-                            case 4:
-                                party[1] = PlayerDatabase.NAME[3][0];
-                                partyNum[1][0] = PlayerController.players[3].hp;
-                                partyNum[1][1] = PlayerController.players[3].maxHp;
-                                partyNum[1][2] = PlayerController.players[3].mp;
-                                partyNum[1][3] = PlayerController.players[3].maxMp;
-                                done = true;
-                                break;
-                            case 5:
-                                party[1] = PlayerDatabase.NAME[4][0];
-                                partyNum[1][0] = PlayerController.players[4].hp;
-                                partyNum[1][1] = PlayerController.players[4].maxHp;
-                                partyNum[1][2] = PlayerController.players[4].mp;
-                                partyNum[1][3] = PlayerController.players[4].maxMp;
-                                done = true;
-                                break;
-                            default:
-                                continue;
-                        }
-                    }
-                    break;
-                case 3:
-                    System.out.println("Replace with who?");
-                    for (int i=0;i<PlayerDatabase.NAME.length;i++) {
-                        System.out.println((i+1) + ": " + PlayerDatabase.NAME[i]);
-                    }
-                    choice2 = input.nextInt();
-                    while (!done) {
-                        switch (choice2) {
-                            case 1:
-                                party[2] = PlayerDatabase.NAME[0][2];
-                                partyNum[2][0] = PlayerController.players[0].hp;
-                                partyNum[2][1] = PlayerController.players[0].maxHp;
-                                partyNum[2][2] = PlayerController.players[0].mp;
-                                partyNum[2][3] = PlayerController.players[0].maxMp;
-                                done = true;
-                                break;
-                            case 2:
-                                party[2] = PlayerDatabase.NAME[1][0];
-                                partyNum[2][0] = PlayerController.players[1].hp;
-                                partyNum[2][1] = PlayerController.players[1].maxHp;
-                                partyNum[2][2] = PlayerController.players[1].mp;
-                                partyNum[2][3] = PlayerController.players[1].maxMp;
-                                done = true;
-                                break;
-                            case 3:
-                                party[2] = PlayerDatabase.NAME[2][0];
-                                partyNum[2][0] = PlayerController.players[2].hp;
-                                partyNum[2][1] = PlayerController.players[2].maxHp;
-                                partyNum[2][2] = PlayerController.players[2].mp;
-                                partyNum[2][3] = PlayerController.players[2].maxMp;
-                                done = true;
-                                break;
-                            case 4:
-                                party[2] = PlayerDatabase.NAME[3][0];
-                                partyNum[2][0] = PlayerController.players[3].hp;
-                                partyNum[2][1] = PlayerController.players[3].maxHp;
-                                partyNum[2][2] = PlayerController.players[3].mp;
-                                partyNum[2][3] = PlayerController.players[3].maxMp;
-                                done = true;
-                                break;
-                            case 5:
-                                party[2] = PlayerDatabase.NAME[4][0];
-                                partyNum[2][0] = PlayerController.players[4].hp;
-                                partyNum[2][1] = PlayerController.players[4].maxHp;
-                                partyNum[2][2] = PlayerController.players[4].mp;
-                                partyNum[2][3] = PlayerController.players[4].maxMp;
-                                done = true;
-                                break;
-                            default:
-                                continue;
-                        }
-                    }
-                    break;
-                case 4:
-                    System.out.println("Replace with who?");
-                    for (int i=0;i<PlayerDatabase.NAME.length;i++) {
-                        System.out.println((i+1) + ": " + PlayerDatabase.NAME[i]);
-                    }
-                    choice2 = input.nextInt();
-                    while (!done) {
-                        switch (choice2) {
-                            case 1:
-                                party[3] = PlayerDatabase.NAME[0][2];
-                                partyNum[3][0] = PlayerController.players[0].hp;
-                                partyNum[3][1] = PlayerController.players[0].maxHp;
-                                partyNum[3][2] = PlayerController.players[0].mp;
-                                partyNum[3][3] = PlayerController.players[0].maxMp;
-                                done = true;
-                                break;
-                            case 2:
-                                party[3] = PlayerDatabase.NAME[1][0];
-                                partyNum[3][0] = PlayerController.players[1].hp;
-                                partyNum[3][1] = PlayerController.players[1].maxHp;
-                                partyNum[3][2] = PlayerController.players[1].mp;
-                                partyNum[3][3] = PlayerController.players[1].maxMp;
-                                done = true;
-                                break;
-                            case 3:
-                                party[3] = PlayerDatabase.NAME[2][0];
-                                partyNum[3][0] = PlayerController.players[2].hp;
-                                partyNum[3][1] = PlayerController.players[2].maxHp;
-                                partyNum[3][2] = PlayerController.players[2].mp;
-                                partyNum[3][3] = PlayerController.players[2].maxMp;
-                                done = true;
-                                break;
-                            case 4:
-                                party[3] = PlayerDatabase.NAME[3][0];
-                                partyNum[3][0] = PlayerController.players[3].hp;
-                                partyNum[3][1] = PlayerController.players[3].maxHp;
-                                partyNum[3][2] = PlayerController.players[3].mp;
-                                partyNum[3][3] = PlayerController.players[3].maxMp;
-                                done = true;
-                                break;
-                            case 5:
-                                party[3] = PlayerDatabase.NAME[4][0];
-                                partyNum[3][0] = PlayerController.players[4].hp;
-                                partyNum[3][1] = PlayerController.players[4].maxHp;
-                                partyNum[3][2] = PlayerController.players[4].mp;
-                                partyNum[3][3] = PlayerController.players[4].maxMp;
-                                done = true;
-                                break;
-                            default:
-                                continue;
-                        }
-                    }
-                    break;
-                default:
-                    continue;
+            System.out.println("Replace with who?");
+            for (int i=0;i<PlayerDatabase.NAME.length;i++) {
+                System.out.println((i+1) + ": " + PlayerDatabase.NAME[i]);
+            }
+            choice2 = input.nextInt();
+            while (!done) {
+                if (choice2 <= PlayerDatabase.NAME.length) {
+                    party[choice-1][0] = PlayerDatabase.NAME[choice2-1][0];
+                    party[choice-1][1] = PlayerDatabase.NAME[choice2-1][1];
+                    party[choice-1][2] = PlayerDatabase.NAME[choice2-1][2];
+                    partyNum[choice-1][0] = PlayerController.players[choice2-1].hp;
+                    partyNum[choice-1][1] = PlayerController.players[choice2-1].maxHp;
+                    partyNum[choice-1][2] = PlayerController.players[choice2-1].mp;
+                    partyNum[choice-1][3] = PlayerController.players[choice2-1].maxMp;
+                    partyNum[choice-1][4] = PlayerController.players[choice2-1].atk;
+                    partyNum[choice-1][5] = PlayerController.players[choice2-1].def;
+                    partyNum[choice-1][6] = PlayerController.players[choice2-1].mAtk;
+                    partyNum[choice-1][7] = PlayerController.players[choice2-1].mDef;
+                    partyNum[choice-1][9] = PlayerController.players[choice2-1].spd;
+                    done = true;
+                } else {
+                    System.out.println("Invalid choice. Please enter a correct choice.");
+                }
             }
         }
     }
