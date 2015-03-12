@@ -16,6 +16,12 @@ public class WeaponDatabase {
         "Wood Axe"
     };
     
+    public final static String[] DESCRIPTION = {
+        "A basic sword",
+        "A basic lance",
+        "A basic axe"
+    };
+    
     /*
     1: Swords
     2: Axes

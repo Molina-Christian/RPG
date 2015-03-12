@@ -14,6 +14,10 @@ public class MagicDatabase {
         
     };
     
+    public final static String[] DESCRIPTION = {
+        
+    };
+    
     /*
     1: Black
     2: White

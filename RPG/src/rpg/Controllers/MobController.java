@@ -21,18 +21,4 @@ public class MobController {
             mobs[i] = new MobModel(MobDatabase.NAME[i], MobDatabase.STR[i], MobDatabase.CON[i], MobDatabase.DEX[i], MobDatabase.INT[i], MobDatabase.WIS[i], MobDatabase.LUC[i]);
         }
     }
-    public void printMobs() {
-        for (int i = 0; i<mobs.length; i++) {
-            System.out.println("Name: " + mobs[i].name);
-            System.out.println("HP: " + mobs[i].hp + "/" + mobs[i].maxHp);
-            System.out.println("MP: " + mobs[i].mp + "/" + mobs[i].maxMp);
-            System.out.println("STR: " + mobs[i].strength);
-            System.out.println("CON: " + mobs[i].constitution);
-            System.out.println("DEX: " + mobs[i].dexterity);
-            System.out.println("INT: " + mobs[i].intelligence);
-            System.out.println("WIS: " + mobs[i].wisdom);
-            System.out.println("LUC: " + mobs[i].luck);
-            System.out.println();
-        }
-    }
 }

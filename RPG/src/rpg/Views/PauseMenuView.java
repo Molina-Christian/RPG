@@ -8,11 +8,10 @@ package rpg.Views;
 import java.util.Scanner;
 import rpg.Controllers.InventoryController;
 import rpg.Controllers.MagicController;
-import rpg.Controllers.PartyController;
 
 /**
  *
- * @author Fred and Karen Call
+ * @author Christian
  */
 public class PauseMenuView {
     private final static String[][] menuItems = {
@@ -39,7 +38,7 @@ public class PauseMenuView {
                     MagicController.printMagic();
                     break;
                 case "3": // Status
-                    PartyController.displayCurrentParty();
+                    PauseMenuView.displayHero();
                     break;
                 case "4": // Save
                     System.out.println("This is not available yet.");
@@ -68,5 +67,30 @@ public class PauseMenuView {
         }
         System.out.println();
         System.out.println("... ");
+    }
+
+    private static void displayHero() {
+        System.out.println();
+        System.out.println(AkashicTrials.hero.firstName + " " + AkashicTrials.hero.lastName + " (" + AkashicTrials.hero.nickName + ")");
+        System.out.println();
+        System.out.println("Level: " + AkashicTrials.hero.level);
+        System.out.println();
+        System.out.println("EXP: " + AkashicTrials.hero.exp + "/" + AkashicTrials.hero.expTo);
+        System.out.println();
+        System.out.println("HP: " + AkashicTrials.hero.HP + "/" + AkashicTrials.hero.MAX_HP);
+        System.out.println("MP: " + AkashicTrials.hero.MP + "/" + AkashicTrials.hero.MAX_MP);
+        System.out.println();
+        System.out.println("STR: " + AkashicTrials.hero.STR);
+        System.out.println("CON: " + AkashicTrials.hero.CON);
+        System.out.println("DEX: " + AkashicTrials.hero.DEX);
+        System.out.println("INT: " + AkashicTrials.hero.INT);
+        System.out.println("WIS: " + AkashicTrials.hero.WIS);
+        System.out.println("LUC: " + AkashicTrials.hero.LUC);
+        System.out.println();
+        System.out.println("Affinity:");
+        System.out.println("Air: " + AkashicTrials.hero.air);
+        System.out.println("Earth: " + AkashicTrials.hero.earth);
+        System.out.println("Fire: " + AkashicTrials.hero.fire);
+        System.out.println("Water: " + AkashicTrials.hero.water);
     }
 }

@@ -12,12 +12,11 @@ import rpg.Models.*;
 
 /**
  *
- * @author Fred and Karen Call
+ * @author Christian
  */
 public class AkashicTrials {
-    static Scanner input = new Scanner(System.in);
-    
     static String intro = "Akasha Trials\ncreated by Christian";
+    public static PlayerModel hero;
     
     public static int time = 1;
     public static int day = 1;
@@ -27,36 +26,31 @@ public class AkashicTrials {
         this.setup();
         System.out.println(intro);
         System.out.println();
-        // Party generation must be after players are generated
-        PartyController party = new PartyController(this.createHero());
+        this.createHero();
         ThaoView.getInput(0);
     }
     
     private void setup() {
         // Generating controllers
         MobController mob = new MobController();
-        PlayerController player =  new PlayerController();
         ItemController item = new ItemController();
         BossController boss = new BossController();
         WeaponController weapon = new WeaponController();
         ArmorController armor = new ArmorController();
         MagicController magic = new MagicController();
-        TownController town = new TownController();
         InventoryController inventory = new InventoryController();
-        EventController event = new EventController();
         
         // Generating Databases
         mob.generateMobs();
         boss.generateBosses();
-        player.generateParty();
         item.generateItems();
         weapon.generateWeapons();
         armor.generateArmors();
         magic.generateMagic();
-        town.generateTowns();
         inventory.setUpInventory();
     }
-    private PlayerModel createHero() {
+    private void createHero() {
+        Scanner input = new Scanner(System.in);
         Boolean correct = false;
         String word1 = null;
         String word2 = null;
@@ -86,7 +80,6 @@ public class AkashicTrials {
                 correct = true;
             }
         }
-        PlayerModel hero = new PlayerModel(word1, word2, word3, 5, 5, 5, 5, 5, 5);
-        return hero;
+        AkashicTrials.hero = new PlayerModel(word1, word2, word3, 5, 5, 5, 5, 5, 5);
     }
 }

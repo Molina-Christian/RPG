@@ -9,34 +9,55 @@ package rpg.Models;
  *
  * @author Christian
  */
-public class WeaponModel {
-    public String name;
-    public String type;
-    public int attack;
-    public int accuracy;
-    public int criticalRate;
-    public int price;
+public class WeaponModel extends DescriptionModel {
+    public String TYPE;
+    public int ATTACK;
+    public int ACCURACY;
+    public int CRITICAL;
+    public int PRICE;
     
-    public WeaponModel(String word, int one, int two, int three, int four, int five) {
-        this.name = word;
-        this.attack = two;
-        this.accuracy = three;
-        this.criticalRate = four;
-        this.price = five;
+    public WeaponModel(String word, String word2, int one, int two, int three, int four, int five) {
+        super (word, word2);
+        this.ATTACK = two;
+        this.ACCURACY = three;
+        this.CRITICAL = four;
+        this.PRICE = five;
         if (one == 1) {
-            this.type = "Sword";
+            this.TYPE = "Sword";
         } else if (one == 2) {
-            this.type = "Axe";
+            this.TYPE = "Axe";
         } else if (one == 3) {
-            this.type = "Hammer";
+            this.TYPE = "Hammer";
         } else if (one == 4) {
-            this.type = "Stave";
+            this.TYPE = "Stave";
         } else if (one == 5) {
-            this.type = "Lance";
+            this.TYPE = "Lance";
         } else if (one == 6) {
-            this.type = "Fist";
+            this.TYPE = "Fist";
         } else if (one == 7) {
-            this.type = "Special";
+            this.TYPE = "Special";
         }
+    }
+    
+    public String getName() {
+        return NAME;
+    }
+    public String getDesc() {
+        return DESCRIPTION;
+    }
+    public String getType() {
+        return TYPE;
+    }
+    public int getAtk() {
+        return ATTACK;
+    }
+    public int getAcc() {
+        return ACCURACY;
+    }
+    public int getCrit() {
+        return CRITICAL;
+    }
+    public int getPrice() {
+        return PRICE;
     }
 }

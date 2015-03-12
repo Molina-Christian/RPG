@@ -9,7 +9,7 @@ package rpg.Databases;
  *
  * @author Christian
  */
-public class PlayerDatabase {
+public class NPCDatabase {
     public final static String[][] NAME = {
         {"Evita", "Sinclair", "Eve"},
         {"Bianca", "Jaeger", null},

@@ -22,17 +22,18 @@ public class WeaponController {
     
     public void generateWeapons() {
         for (int i=0; i<weapons.length;i++) {
-            weapons[i] = new WeaponModel(WeaponDatabase.NAME[i], WeaponDatabase.TYPE[i], WeaponDatabase.ATK[i], WeaponDatabase.ACC[i], WeaponDatabase.CRIT[i], WeaponDatabase.PRICE[i]);
+            weapons[i] = new WeaponModel(WeaponDatabase.NAME[i], WeaponDatabase.DESCRIPTION[i], WeaponDatabase.TYPE[i], WeaponDatabase.ATK[i], WeaponDatabase.ACC[i], WeaponDatabase.CRIT[i], WeaponDatabase.PRICE[i]);
         }
     }
     public void printWeapons() {
-        for (int i=0; i<weapons.length;i++) {
-            System.out.println("Name: " + weapons[i].name);
-            System.out.println("Type: " + weapons[i].type);
-            System.out.println("ATK: " + weapons[i].attack);
-            System.out.println("ACC: " + weapons[i].accuracy);
-            System.out.println("CRIT: " + weapons[i].criticalRate);
-            System.out.println("Price: " + weapons[i].price + "G");
+        for (WeaponModel weapon : weapons) {
+            System.out.println("Name: " + weapon.getName());
+            System.out.println("Description: " + weapon.getDesc());
+            System.out.println("Type: " + weapon.getType());
+            System.out.println("ATK: " + weapon.getAtk());
+            System.out.println("ACC: " + weapon.getAcc());
+            System.out.println("CRIT: " + weapon.getCrit());
+            System.out.println("Price: " + weapon.getPrice() + "G");
             System.out.println();
         }
     }

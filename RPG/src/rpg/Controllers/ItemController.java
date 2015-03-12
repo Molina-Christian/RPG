@@ -18,16 +18,17 @@ public class ItemController {
     
     public void generateItems() {
         for (int i=0; i<items.length;i++) {
-            items[i] = new ItemModel(ItemDatabase.NAME[i], ItemDatabase.TYPE[i], ItemDatabase.EFFECT[i], ItemDatabase.PRICE[i]);
+            items[i] = new ItemModel(ItemDatabase.NAME[i], ItemDatabase.DESCRIPTION[i], ItemDatabase.TYPE[i], ItemDatabase.EFFECT[i], ItemDatabase.PRICE[i]);
         }
     }
     public void printItems() {
-        for (int i = 0; i<items.length; i++) {
-            System.out.println("Name: " + items[i].name);
-            System.out.println("Type: " + items[i].type);
-            if (items[i].type != "KEY") {
-                System.out.println("Effect: " + items[i].effect);
-                System.out.println("Price: " + items[i].price + "G");
+        for (ItemModel item : items) {
+            System.out.println("Name: " + item.getName());
+            System.out.println("Description: " + item.getDesc());
+            System.out.println("Type: " + item.getType());
+            if (!item.getType().equals("KEY")) {
+                System.out.println("Effect: " + item.getEff());
+                System.out.println("Price: " + item.getPrice() + "G");
             }
             System.out.println();
         }

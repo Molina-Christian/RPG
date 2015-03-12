@@ -9,52 +9,82 @@ package rpg.Models;
  *
  * @author Christian
  */
-public class MagicModel {
-    public String name;
-    public String type;
-    public int level;
-    public int cost;
-    public int power;
-    public int accuracy;
-    public String element;
-    public String target;
-    public int price;
+public class MagicModel extends DescriptionModel {
+    public String TYPE;
+    public int LEVEL;
+    public int COST;
+    public int POWER;
+    public int ACCURACY;
+    public String ELEMENT;
+    public String TARGET;
+    public int PRICE;
     
-    public MagicModel(String word, int one, int two, int three, int four, int five, int six, int seven, int eight) {
-        this.name = word;
-        this.level = two;
-        this.cost = three;
-        this.power = four;
-        this.accuracy = five;
-        this.price = eight;
+    public MagicModel(String word, String word2, int one, int two, int three, int four, int five, int six, int seven, int eight) {
+        super (word, word2);
+        this.LEVEL = two;
+        this.COST = three;
+        this.POWER = four;
+        this.ACCURACY = five;
+        this.PRICE = eight;
         if (one == 1) {
-            this.type = "Black Magic";
+            this.TYPE = "Black Magic";
         } else if (one == 2) {
-            this.type = "White Magic";
+            this.TYPE = "White Magic";
         } else if (one == 3) {
-            this.type = "Red Magic";
+            this.TYPE = "Red Magic";
         } else if (one == 4) {
-            this.type = "Blue Magic";
+            this.TYPE = "Blue Magic";
         }
         if (six == 1) {
-            this.element = "None";
+            this.ELEMENT = "None";
         } else if (six == 2) {
-            this.element = "Fire";
+            this.ELEMENT = "Fire";
         } else if (six == 3) {
-            this.element = "Water";
+            this.ELEMENT = "Water";
         } else if (six == 4) {
-            this.element = "Wind";
+            this.ELEMENT = "Wind";
         } else if (six == 5) {
-            this.element = "Earth";
+            this.ELEMENT = "Earth";
         } else if (six == 6) {
-            this.element = "Status";
+            this.ELEMENT = "Status";
         }
         if (seven == 1) {
-            this.target = "Self";
+            this.TARGET = "Self";
         } else if (seven == 2) {
-            this.target = "One";
+            this.TARGET = "One";
         } else if (seven == 3) {
-            this.target = "All";
+            this.TARGET = "All";
         }
+    }
+    
+    public String getName() {
+        return NAME;
+    }
+    public String getDesc() {
+        return DESCRIPTION;
+    }
+    public String getType() {
+        return TYPE;
+    }
+    public int getLvl() {
+        return LEVEL;
+    }
+    public int getCost() {
+        return COST;
+    }
+    public int getPwr() {
+        return POWER;
+    }
+    public int getAcc() {
+        return ACCURACY;
+    }
+    public String getElement() {
+        return ELEMENT;
+    }
+    public String getTarget() {
+        return TARGET;
+    }
+    public int getPrice() {
+        return PRICE;
     }
 }

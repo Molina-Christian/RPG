@@ -18,25 +18,22 @@ public class MagicController {
     
     public void generateMagic() {
         for (int i=0;i<magics.length;i++) {
-            magics[i] = new MagicModel(MagicDatabase.NAME[i], MagicDatabase.TYPE[i], MagicDatabase.LEVEL[i], MagicDatabase.COST[i], MagicDatabase.PWR[i], MagicDatabase.ACC[i], MagicDatabase.ELEMENT[i], MagicDatabase.TARGET[i], MagicDatabase.PRICE[i]);
+            magics[i] = new MagicModel(MagicDatabase.NAME[i], MagicDatabase.DESCRIPTION[i], MagicDatabase.TYPE[i], MagicDatabase.LEVEL[i], MagicDatabase.COST[i], MagicDatabase.PWR[i], MagicDatabase.ACC[i], MagicDatabase.ELEMENT[i], MagicDatabase.TARGET[i], MagicDatabase.PRICE[i]);
         }
     }
     public static void printMagic() {
         System.out.println();
-        System.out.println("**********************************************************************");
-        System.out.println("**                             MAGIC                                **");
-        System.out.println("**********************************************************************");
-        System.out.println();
-        for (int i=0;i<magics.length;i++) {
-            System.out.println("Name: " + magics[i].name);
-            System.out.println("Type: " + magics[i].type);
-            System.out.println("Level: " + magics[i].level);
-            System.out.println("Cost: " + magics[i].cost + "MP");
-            System.out.println("PWR: " + magics[i].power);
-            System.out.println("ACC: " + magics[i].accuracy);
-            System.out.println("Element: " + magics[i].element);
-            System.out.println("Target: " + magics[i].target);
-            System.out.println("Price: " + magics[i].price + "G");
+        for (MagicModel magic : magics) {
+            System.out.println("Name: " + magic.getName());
+            System.out.println("Description: " + magic.getDesc());
+            System.out.println("Type: " + magic.getType());
+            System.out.println("Level: " + magic.getLvl());
+            System.out.println("Cost: " + magic.getCost() + "MP");
+            System.out.println("PWR: " + magic.getPwr());
+            System.out.println("ACC: " + magic.getAcc());
+            System.out.println("Element: " + magic.getElement());
+            System.out.println("Target: " + magic.getTarget());
+            System.out.println("Price: " + magic.getPrice() + "G");
             System.out.println();
         }
     }

@@ -11,7 +11,11 @@ package rpg.Databases;
  */
 public class ArmorDatabase {
     public final static String[] NAME = {
-        "Helmet"
+        "Leather Helm"
+    };
+    
+    public final static String[] DESCRIPTION = {
+        "A helmet made of leather"
     };
     
     /*

@@ -18,17 +18,18 @@ public class ArmorController {
     
     public void generateArmors() {
         for (int i=0; i<armors.length;i++) {
-            armors[i] = new ArmorModel(ArmorDatabase.NAME[i], ArmorDatabase.TYPE[i], ArmorDatabase.DEF[i], ArmorDatabase.EVA[i], ArmorDatabase.WGT[i], ArmorDatabase.PRICE[i]);
+            armors[i] = new ArmorModel(ArmorDatabase.NAME[i], ArmorDatabase.DESCRIPTION[i], ArmorDatabase.TYPE[i], ArmorDatabase.DEF[i], ArmorDatabase.EVA[i], ArmorDatabase.WGT[i], ArmorDatabase.PRICE[i]);
         }
     }
     public void printArmors() {
-        for (int i=0; i<armors.length;i++) {
-            System.out.println("Name: " + armors[i].name);
-            System.out.println("Type: " + armors[i].type);
-            System.out.println("DEF: " + armors[i].defense);
-            System.out.println("EVA: " + armors[i].evasion);
-            System.out.println("WGT: " + armors[i].weight);
-            System.out.println("Price: " + armors[i].price + "G");
+        for (ArmorModel armor : armors) {
+            System.out.println("Name: " + armor.getName());
+            System.out.println("Description: " + armor.getDesc());
+            System.out.println("Type: " + armor.getType());
+            System.out.println("DEF: " + armor.getDef());
+            System.out.println("EVA: " + armor.getEva());
+            System.out.println("WGT: " + armor.getWgt());
+            System.out.println("Price: " + armor.getPrice() + "G");
             System.out.println();
         }
     }

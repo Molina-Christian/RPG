@@ -20,32 +20,65 @@ public class BattleMenuView {
         {"3.", "Defend"},
         {"4.", "Run"}
     };
+    public static int enemyCounter;
+    public static Boolean run = false;
+
+    public static void initiate() {
+        PartyController.buildEncounter();
+        BattleController.playerDefend = false;
+        BattleController.mobDefend = false;
+        
+        run = false;
+        for (;;) {
+            BattleMenuView.getInput();
+            if (!BattleController.mobDefend.equals(true)) {
+            } else {
+                BattleController.mobDefend = false;
+                PartyController.party[0].DEF = PartyController.party[0].DEF / 2;
+            }
+            if (run.equals(true)) {
+                break;
+            } else if (PartyController.party[0].HP <= 0) {
+                break;
+            }
+            BattleController.enemyTurn();
+            if (!BattleController.playerDefend.equals(true)) {
+            } else {
+                BattleController.playerDefend = false;
+                AkashicTrials.hero.DEF = AkashicTrials.hero.DEF / 2;
+            }
+            if (AkashicTrials.hero.HP <= 0) {
+                break;
+            }
+        }
+        PartyController.refresh();
+    }
     BattleController battleMenu = new BattleController();
     
     public BattleMenuView() {
         
     }
     
-    public void getInput() {
-        int command = 0;
+    public static void getInput() {
+        String command;
         Scanner inFile = new Scanner(System.in);
         
-        this.display();
+        BattleMenuView.display();
 
-        command = inFile.nextInt();
+        command = inFile.nextLine();
 
         switch (command) {
-            case 1://Attack
-                this.battleMenu.playerAttack(1);
+            case "1"://Attack
+                BattleController.playerAttack();
                 break;
-            case 2://Magic
-                this.battleMenu.playerSkill(1);
+            case "2"://Magic
+                BattleController.playerSkill();
                 break;
-            case 3://Defend
-                this.battleMenu.playerDefend(1);
+            case "3"://Defend
+                BattleController.playerDefend();
                 break;
-            case 4://Run
-                this.battleMenu.runAway();
+            case "4"://Run
+                BattleController.runAway();
                 break;  
             default: 
                 System.out.println("You stood around doing nothing...");
@@ -53,26 +86,22 @@ public class BattleMenuView {
         };
     }
     
-    public final void display() {
+    private static void display() {
         System.out.println("*****************************");
         System.out.println("**       PLAYER TURN       **");
         System.out.println("*****************************");
         System.out.println();
         System.out.println("Player:");
+        System.out.println(AkashicTrials.hero.nickName);
+        System.out.println("HP: " + AkashicTrials.hero.HP + "/" + AkashicTrials.hero.MAX_HP);
+        System.out.println("MP: " + AkashicTrials.hero.MP + "/" + AkashicTrials.hero.MAX_MP);
+        System.out.println();
+        System.out.println("Enemy:");
         for (int i=0;i<PartyController.party.length;i++) {
             if (PartyController.party[i] != null) {
-                System.out.println(PartyController.party[i]);
-                System.out.println("HP: " + PartyController.partyNum[i][0] + "/" + PartyController.partyNum[i][1]);
-                System.out.println("MP: " + PartyController.partyNum[i][2] + "/" + PartyController.partyNum[i][3]);
-                System.out.println();
-            }
-        }
-        System.out.println("Enemy:");
-        for (int i=0;i<PartyController.mobs.length;i++) {
-            if (PartyController.mobs[i] != null) {
-                System.out.println(PartyController.mobs[i]);
-                System.out.println("HP: " + PartyController.mobsNum[i][0] + "/" + PartyController.mobsNum[i][1]);
-                System.out.println("MP: " + PartyController.mobsNum[i][2] + "/" + PartyController.mobsNum[i][3]);
+                System.out.println(PartyController.party[i].NAME);
+                System.out.println("HP: " + PartyController.party[i].HP + "/" + PartyController.party[i].MAX_HP);
+                System.out.println("MP: " + PartyController.party[i].MP + "/" + PartyController.party[i].MAX_MP);
                 System.out.println();
             }
         }

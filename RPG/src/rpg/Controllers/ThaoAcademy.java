@@ -7,38 +7,31 @@ package rpg.Controllers;
 
 /**
  *
- * @author Fred and Karen Call
+ * @author Christian
  */
 public class ThaoAcademy {
-    public static void talk(int where) {
-        switch (where) {
-            case 0:
-                System.out.println("You are talking OUTSIDE");
-                break;
-            case 1:
-                System.out.println("You are talking INSIDE");
-                break;
-            case 2:
-                System.out.println("You are talking DORM");
-                break;
-            case 3:
-                System.out.println("You are talking CAFE");
-                break;
-            case 4:
-                System.out.println("You are talking TELEPORT");
-                break;
-        }
+    public void talk(int where) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    public static void goToClass() {
-        
+    public void goToClass() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    public static void eat() {
-        
+    public void eat() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    public static void room() {
-        
+    public void room() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    public static void teleport() {
-        
+    public void teleport() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    public void weapon() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    public void magic() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    public void item() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

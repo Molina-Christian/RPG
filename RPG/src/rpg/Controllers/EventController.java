@@ -7,7 +7,6 @@ package rpg.Controllers;
 
 import rpg.Views.AkashicTrials;
 import java.util.Scanner;
-import rpg.Controllers.PlayerController;
 
 /**
  *
@@ -28,20 +27,11 @@ public class EventController {
     public void eventTrue(int event) {
         if (this.checkTime(event) == true) {
             // start event
-            System.out.println("I am an event at the 3rd hour!");
-            PlayerController.players[0].affection++;
-            System.out.println(PlayerController.players[0].nickName + ": " + PlayerController.players[0].affection + " love points");
-            input.nextLine();
         }
     }
     
     public Boolean checkTime(int event) {
         switch (event) {
-            case 1:
-                // if the TIME == the right time
-                if (AkashicTrials.time == 3) {
-                    return true;
-                }
             default:
                 break;
         }

@@ -9,11 +9,12 @@ package rpg.Models;
  *
  * @author Christian
  */
-public class MobModel extends Battler {
+public class DescriptionModel {
     public String NAME;
+    public String DESCRIPTION;
     
-    public MobModel(String name, int one, int two, int three, int four, int five, int six) {
-        super (one, two, three, four, five, six);
-        this.NAME = name;
+    DescriptionModel(String word, String word2) {
+        this.NAME = word;
+        this.DESCRIPTION = word2;
     }
 }

@@ -14,6 +14,10 @@ public class ItemDatabase {
         "Herb"
     };
     
+    public final static String[] DESCRIPTION = {
+        "A basic healing herb"
+    };
+    
     /*
     1: Healing
     2: Booster

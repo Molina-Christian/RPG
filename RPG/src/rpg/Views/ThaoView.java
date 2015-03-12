@@ -8,18 +8,20 @@ package rpg.Views;
 import java.util.Scanner;
 
 import rpg.Controllers.ThaoAcademy;
+import rpg.Databases.Thao;
 
 /**
  *
- * @author Fred and Karen Call
+ * @author Christian
  */
 public class ThaoView {
     private static int location;
     private final static String[][] OUTSIDE = {
         {"1.","Go Inside"},
         {"2.","Go to the Dorms"},
-        {"3.","Talk"},
-        {"4.","Leave the Academy"}
+        {"3.","Go to the Marketplace"},
+        {"4.","Talk"},
+        {"5.","Leave the Academy"}
     };
     private final static String[][] INSIDE = {
         {"1.","Go to Class"},
@@ -42,6 +44,12 @@ public class ThaoView {
         {"1.","Use the Teleporter"},
         {"2.","Talk"},
         {"3.","Leave the Teleporter"}
+    };
+    private final static String[][] MARKET = {
+        {"1.","Weapon Shop"},
+        {"2.","Magic Shop"},
+        {"3.","Item Shop"},
+        {"4.","Leave the Marketplace"}
     };
     static ThaoAcademy control = new ThaoAcademy();
     
@@ -66,17 +74,22 @@ public class ThaoView {
                             ThaoView.getInput(location);
                             break;
                         case "3":
+                            location = 5;
+                            ThaoView.getInput(location);
+                            break;
+                        case "4":
                             control.talk(where);
                             continue;
-                        case "4":
-                            return;
+                        case "5":
+                            OutsideView.getInput();
+                            break;
                         case "M":
                             PauseMenuView.getInput();
                             break;
                         default:
                             System.out.println("Invalid command. Please enter a valid command.");
                     }
-                }while(!command.equals("4"));
+                }while(!command.equals("EXIT"));
                 break;
             case 1:
                 do {
@@ -182,6 +195,33 @@ public class ThaoView {
                     }
                 }while(!command.equals("3"));
                 break;
+            case 5:
+                do {
+                    ThaoView.display(where);
+
+                    command = input.nextLine();
+                    command = command.trim().toUpperCase();
+
+                    switch (command) {
+                        case "1":
+                            control.weapon();
+                            break;
+                        case "2":
+                            control.magic();
+                            break;
+                        case "3":
+                            control.item();
+                            continue;
+                        case "4":
+                            return;
+                        case "M":
+                            PauseMenuView.getInput();
+                            break;
+                        default:
+                            System.out.println("Invalid command. Please enter a valid command.");
+                    }
+                }while(!command.equals("4"));
+                break;
         }
     }
     private static void display(int where) {
@@ -191,6 +231,10 @@ public class ThaoView {
                 System.out.println("**********************************************************************");
                 System.out.println("Day: " + AkashicTrials.day + " Hour: " + AkashicTrials.time);
                 System.out.println("**********************************************************************");
+                System.out.println();
+                System.out.println(Thao.getName(where));
+                System.out.println();
+                System.out.println(Thao.getDesc(where));
                 System.out.println();
                 for (String[] array : OUTSIDE) {
                     System.out.println("\t" + array[0] + "\t" + array[1]);
@@ -204,6 +248,10 @@ public class ThaoView {
                 System.out.println("Day: " + AkashicTrials.day + " Hour: " + AkashicTrials.time);
                 System.out.println("**********************************************************************");
                 System.out.println();
+                System.out.println(Thao.getName(where));
+                System.out.println();
+                System.out.println(Thao.getDesc(where));
+                System.out.println();
                 for (String[] array : INSIDE) {
                     System.out.println("\t" + array[0] + "\t" + array[1]);
                 }
@@ -215,6 +263,10 @@ public class ThaoView {
                 System.out.println("**********************************************************************");
                 System.out.println("Day: " + AkashicTrials.day + " Hour: " + AkashicTrials.time);
                 System.out.println("**********************************************************************");
+                System.out.println();
+                System.out.println(Thao.getName(where));
+                System.out.println();
+                System.out.println(Thao.getDesc(where));
                 System.out.println();
                 for (String[] array : DORM) {
                     System.out.println("\t" + array[0] + "\t" + array[1]);
@@ -228,6 +280,10 @@ public class ThaoView {
                 System.out.println("Day: " + AkashicTrials.day + " Hour: " + AkashicTrials.time);
                 System.out.println("**********************************************************************");
                 System.out.println();
+                System.out.println(Thao.getName(where));
+                System.out.println();
+                System.out.println(Thao.getDesc(where));
+                System.out.println();
                 for (String[] array : CAFE) {
                     System.out.println("\t" + array[0] + "\t" + array[1]);
                 }
@@ -240,7 +296,27 @@ public class ThaoView {
                 System.out.println("Day: " + AkashicTrials.day + " Hour: " + AkashicTrials.time);
                 System.out.println("**********************************************************************");
                 System.out.println();
+                System.out.println(Thao.getName(where));
+                System.out.println();
+                System.out.println(Thao.getDesc(where));
+                System.out.println();
                 for (String[] array : TELEPORT) {
+                    System.out.println("\t" + array[0] + "\t" + array[1]);
+                }
+                System.out.println();
+                System.out.println("... ");
+                break;
+            case 5:
+                System.out.println();
+                System.out.println("**********************************************************************");
+                System.out.println("Day: " + AkashicTrials.day + " Hour: " + AkashicTrials.time);
+                System.out.println("**********************************************************************");
+                System.out.println();
+                System.out.println(Thao.getName(where));
+                System.out.println();
+                System.out.println(Thao.getDesc(where));
+                System.out.println();
+                for (String[] array : MARKET) {
                     System.out.println("\t" + array[0] + "\t" + array[1]);
                 }
                 System.out.println();

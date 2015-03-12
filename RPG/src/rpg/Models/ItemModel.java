@@ -9,26 +9,41 @@ package rpg.Models;
  *
  * @author Christian
  */
-public class ItemModel {
-    public String name;
-    public String type;
-    public int effect;
-    public int price;
+public class ItemModel extends DescriptionModel {
+    public String TYPE;
+    public int EFFECT;
+    public int PRICE;
     
-    public ItemModel(String word, int one, int two, int three) {
-        this.name = word;
+    public ItemModel(String word, String word2, int one, int two, int three) {
+        super (word, word2);
         if (one == 1) {
-            this.type = "Healing";
-            this.effect = two;
-            this.price = three;
+            this.TYPE = "Healing";
+            this.EFFECT = two;
+            this.PRICE = three;
         } else if (one == 2) {
-            this.type = "Booster";
-            this.effect = two;
-            this.price = three;
+            this.TYPE = "Booster";
+            this.EFFECT = two;
+            this.PRICE = three;
         } else if (one == 3) {
-            this.type = "Attack";
-            this.effect = two;
-            this.price = three;
+            this.TYPE = "Attack";
+            this.EFFECT = two;
+            this.PRICE = three;
         }
+    }
+    
+    public String getName() {
+        return NAME;
+    }
+    public String getDesc() {
+        return DESCRIPTION;
+    }
+    public String getType() {
+        return TYPE;
+    }
+    public int getEff() {
+        return EFFECT;
+    }
+    public int getPrice() {
+        return PRICE;
     }
 }
