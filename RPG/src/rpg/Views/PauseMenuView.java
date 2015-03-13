@@ -7,7 +7,7 @@ package rpg.Views;
 
 import java.util.Scanner;
 import rpg.Controllers.InventoryController;
-import rpg.Controllers.MagicController;
+import rpg.Models.MagicModel;
 
 /**
  *
@@ -35,15 +35,25 @@ public class PauseMenuView {
                     InventoryController.printInventory();
                     break;
                 case "2": // Magic
-                    MagicController.printMagic();
+                    MagicModel.displayMagic();
                     break;
                 case "3": // Status
                     PauseMenuView.displayHero();
                     break;
                 case "4": // Save
+                    System.out.println();
+                    System.out.println("**********************************************************************");
+                    System.out.println("**                               SAVE                               **");
+                    System.out.println("**********************************************************************");
+                    System.out.println();
                     System.out.println("This is not available yet.");
                     break;
                 case "5": // Quit
+                    System.out.println();
+                    System.out.println("**********************************************************************");
+                    System.out.println("**                               QUIT                               **");
+                    System.out.println("**********************************************************************");
+                    System.out.println();
                     System.out.println("Are you sure you wish to quit? (Y/N)");
                     String quit = input.nextLine();
                     quit = quit.trim().toUpperCase();
@@ -71,26 +81,30 @@ public class PauseMenuView {
 
     private static void displayHero() {
         System.out.println();
-        System.out.println(AkashicTrials.hero.firstName + " " + AkashicTrials.hero.lastName + " (" + AkashicTrials.hero.nickName + ")");
+        System.out.println("**********************************************************************");
+        System.out.println("**                              STATUS                              **");
+        System.out.println("**********************************************************************");
         System.out.println();
-        System.out.println("Level: " + AkashicTrials.hero.level);
+        System.out.println(AkashicTrials.hero.getFirst() + " " + AkashicTrials.hero.getLast() + " (" + AkashicTrials.hero.getNick() + ")");
         System.out.println();
-        System.out.println("EXP: " + AkashicTrials.hero.exp + "/" + AkashicTrials.hero.expTo);
+        System.out.println("Level: " + AkashicTrials.hero.getLvl());
         System.out.println();
-        System.out.println("HP: " + AkashicTrials.hero.HP + "/" + AkashicTrials.hero.MAX_HP);
-        System.out.println("MP: " + AkashicTrials.hero.MP + "/" + AkashicTrials.hero.MAX_MP);
+        System.out.println("EXP: " + AkashicTrials.hero.getEXP() + "/" + AkashicTrials.hero.getExpTo());
         System.out.println();
-        System.out.println("STR: " + AkashicTrials.hero.STR);
-        System.out.println("CON: " + AkashicTrials.hero.CON);
-        System.out.println("DEX: " + AkashicTrials.hero.DEX);
-        System.out.println("INT: " + AkashicTrials.hero.INT);
-        System.out.println("WIS: " + AkashicTrials.hero.WIS);
-        System.out.println("LUC: " + AkashicTrials.hero.LUC);
+        System.out.println("HP: " + AkashicTrials.hero.getHP() + "/" + AkashicTrials.hero.getMaxHP());
+        System.out.println("MP: " + AkashicTrials.hero.getMP() + "/" + AkashicTrials.hero.getMaxMP());
+        System.out.println();
+        System.out.println("STR: " + AkashicTrials.hero.getSTR());
+        System.out.println("CON: " + AkashicTrials.hero.getCON());
+        System.out.println("DEX: " + AkashicTrials.hero.getDEX());
+        System.out.println("INT: " + AkashicTrials.hero.getINT());
+        System.out.println("WIS: " + AkashicTrials.hero.getWIS());
+        System.out.println("LUC: " + AkashicTrials.hero.getLUC());
         System.out.println();
         System.out.println("Affinity:");
-        System.out.println("Air: " + AkashicTrials.hero.air);
-        System.out.println("Earth: " + AkashicTrials.hero.earth);
-        System.out.println("Fire: " + AkashicTrials.hero.fire);
-        System.out.println("Water: " + AkashicTrials.hero.water);
+        System.out.println("Air: " + AkashicTrials.hero.getAir());
+        System.out.println("Earth: " + AkashicTrials.hero.getEarth());
+        System.out.println("Fire: " + AkashicTrials.hero.getFire());
+        System.out.println("Water: " + AkashicTrials.hero.getWater());
     }
 }

@@ -5,6 +5,8 @@
  */
 package rpg.Models;
 
+import rpg.Databases.ItemDatabase;
+
 /**
  *
  * @author Christian
@@ -45,5 +47,14 @@ public class ItemModel extends DescriptionModel {
     }
     public int getPrice() {
         return PRICE;
+    }
+    
+    //Accessing Database
+    public static ItemModel[] items = new ItemModel[ItemDatabase.NAME.length];
+    
+    public static void generateItems() {
+        for (int i=0; i<items.length;i++) {
+            items[i] = new ItemModel(ItemDatabase.NAME[i], ItemDatabase.DESCRIPTION[i], ItemDatabase.TYPE[i], ItemDatabase.EFFECT[i], ItemDatabase.PRICE[i]);
+        }
     }
 }

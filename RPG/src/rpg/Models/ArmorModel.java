@@ -5,6 +5,8 @@
  */
 package rpg.Models;
 
+import rpg.Databases.ArmorDatabase;
+
 /**
  *
  * @author Christian
@@ -53,5 +55,14 @@ public class ArmorModel extends DescriptionModel {
     }
     public int getPrice() {
         return PRICE;
+    }
+    
+    //Accessing Database
+    public static ArmorModel[] armors = new ArmorModel[ArmorDatabase.NAME.length];
+    
+    public static void generateArmors() {
+        for (int i=0; i<armors.length;i++) {
+            armors[i] = new ArmorModel(ArmorDatabase.NAME[i], ArmorDatabase.DESCRIPTION[i], ArmorDatabase.TYPE[i], ArmorDatabase.DEF[i], ArmorDatabase.EVA[i], ArmorDatabase.WGT[i], ArmorDatabase.PRICE[i]);
+        }
     }
 }

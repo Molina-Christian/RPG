@@ -5,6 +5,8 @@
  */
 package rpg.Models;
 
+import rpg.Databases.MagicDatabase;
+
 /**
  *
  * @author Christian
@@ -86,5 +88,87 @@ public class MagicModel extends DescriptionModel {
     }
     public int getPrice() {
         return PRICE;
+    }
+    
+    //Accessing Database
+    public static MagicModel[] magics = new MagicModel[MagicDatabase.NAME.length];
+    public static MagicModel[][] inventoryMagic = new MagicModel[4][magics.length];
+    
+    public static void generateMagic() {
+        for (int i=0;i<magics.length;i++) {
+            magics[i] = new MagicModel(MagicDatabase.NAME[i], MagicDatabase.DESCRIPTION[i], MagicDatabase.TYPE[i], MagicDatabase.LEVEL[i], MagicDatabase.COST[i], MagicDatabase.PWR[i], MagicDatabase.ACC[i], MagicDatabase.ELEMENT[i], MagicDatabase.TARGET[i], MagicDatabase.PRICE[i]);
+        }
+    }
+    
+    public static void addMagic(int i) {
+        switch (magics[i].getType()) {
+            case "Black":
+                if (inventoryMagic[0][i].equals(magics[i])) {
+                    System.out.println("You already have this magic!");
+                } else {
+                    inventoryMagic[0][i] = magics[i];
+                }
+                break;
+            case "White":
+                if (inventoryMagic[0][i].equals(magics[i])) {
+                    System.out.println("You already have this magic!");
+                } else {
+                    inventoryMagic[1][i] = magics[i];
+                }
+                break;
+            case "Red":
+                if (inventoryMagic[0][i].equals(magics[i])) {
+                    System.out.println("You already have this magic!");
+                } else {
+                    inventoryMagic[2][i] = magics[i];
+                }
+                break;
+            case "Blue":
+                if (inventoryMagic[0][i].equals(magics[i])) {
+                    System.out.println("You already have this magic!");
+                } else {
+                    inventoryMagic[3][i] = magics[i];
+                }
+                break;
+        }
+    }
+    
+    public static void displayMagic() {
+        System.out.println();
+        System.out.println("**********************************************************************");
+        System.out.println("**                             MAGIC                                **");
+        System.out.println("**********************************************************************");
+        System.out.println();
+        System.out.println("Black Magic:");
+        System.out.println();
+        for (MagicModel Magic : inventoryMagic[0]) {
+            if (!(Magic == null)) {
+                System.out.println(Magic.getName());
+            }
+        }
+        System.out.println();
+        System.out.println("White Magic:");
+        System.out.println();
+        for (MagicModel Magic : inventoryMagic[1]) {
+            if (!(Magic == null)) {
+                System.out.println(Magic.getName());
+            }
+        }
+        System.out.println();
+        System.out.println("Red Magic:");
+        System.out.println();
+        for (MagicModel Magic : inventoryMagic[2]) {
+            if (!(Magic == null)) {
+                System.out.println(Magic.getName());
+            }
+        }
+        System.out.println();
+        System.out.println("Blue Magic:");
+        System.out.println();
+        for (MagicModel Magic : inventoryMagic[3]) {
+            if (!(Magic == null)) {
+                System.out.println(Magic.getName());
+            }
+        }
     }
 }

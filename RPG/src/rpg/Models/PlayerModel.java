@@ -31,8 +31,6 @@ public class PlayerModel extends Battler {
     public int earthEXP = 0;
     public int airEXP = 0;
     
-    public int affection = 0;
-    
     Random roll = new Random();
     
     public PlayerModel(String name1, String name2, String name3, int one, int two, int three, int four, int five, int six) {
@@ -99,7 +97,6 @@ public class PlayerModel extends Battler {
             PlayerModel.levelUp();
         }
     }
-
     private static void update() {
         AkashicTrials.hero.HP = AkashicTrials.hero.CON * 10;
         AkashicTrials.hero.MAX_HP = AkashicTrials.hero.HP;
@@ -112,4 +109,36 @@ public class PlayerModel extends Battler {
         AkashicTrials.hero.M_DEF = (AkashicTrials.hero.WIS * 3) / 2;
         AkashicTrials.hero.SPD = (AkashicTrials.hero.DEX * 3) / 2;
     }
+    
+    public String getFirst() {
+        return firstName;
+    }
+    public String getLast() {
+        return lastName;
+    }
+    public String getNick() {
+        return nickName;
+    }
+    public int getLvl() {
+        return level;
+    }
+    public int getEXP() {
+        return exp;
+    }
+    public int getExpTo() {
+        return expTo;
+    }
+    public int getFire() {
+        return fire;
+    }
+    public int getAir() {
+        return air;
+    }
+    public int getEarth() {
+        return earth;
+    }
+    public int getWater() {
+        return water;
+    }
+    
 }

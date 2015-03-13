@@ -37,23 +37,27 @@ public class InventoryController {
         System.out.println("**                           INVENTORY                              **");
         System.out.println("**********************************************************************");
         System.out.println();
+        System.out.println("Items:");
         for (int i=0;i<1;i++) {
-            if (inventory[i].name != null) {
+            if (inventory[i].amount != 0) {
                 System.out.println(inventory[0].name + " : " + inventory[0].amount);
             }
         }
+        System.out.println("Weapons:");
         for (int i=0;i<WeaponDatabase.NAME.length;i++) {
-            if (inventory[i].name != null) {
+            if (inventory[i].amount != 0) {
                 System.out.println(inventory[1].name + " : " + inventory[1].amount);
             }
         }
+        System.out.println("Armor:");
         for (int i=0;i<ArmorDatabase.NAME.length;i++) {
-            if (inventory[2].name != null) {
+            if (inventory[2].amount != 0) {
                 System.out.println(inventory[2].name + " : " + inventory[2].amount);
             }
         }
+        System.out.println("Key Items:");
         for (int i=0;i<KeyItemDatabase.NAME.length;i++) {
-            if (inventory[3].name != null) {
+            if (inventory[3].amount != 0) {
                 System.out.println(inventory[3].name + " : " + inventory[3].amount);
             }
         }

@@ -4,14 +4,10 @@
  * and open the turnOrderlate in the editor.
  */
 package rpg.Controllers;
-import java.util.Scanner;
 import java.util.Random;
-import java.util.Arrays;
 
 //Accessing Database
 import rpg.Models.MobModel;
-import rpg.Controllers.MobController;
-import rpg.Views.AkashicTrials;
 
 /**
  *
@@ -26,8 +22,8 @@ public class PartyController {
     }
     
     public static void buildEncounter() {
-        int which = roll.nextInt(MobController.mobs.length);
-        party[0] = MobController.mobs[which];
+        int which = roll.nextInt(MobModel.mobs.length);
+        party[0] = MobModel.mobs[which];
     }
     
     public static void refresh() {

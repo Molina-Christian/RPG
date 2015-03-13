@@ -5,6 +5,8 @@
  */
 package rpg.Models;
 
+import rpg.Databases.WeaponDatabase;
+
 /**
  *
  * @author Christian
@@ -59,5 +61,14 @@ public class WeaponModel extends DescriptionModel {
     }
     public int getPrice() {
         return PRICE;
+    }
+    
+    //Accessing Database
+    public static WeaponModel[] weapons = new WeaponModel[WeaponDatabase.NAME.length];
+    
+    public static void generateWeapons() {
+        for (int i=0; i<weapons.length;i++) {
+            weapons[i] = new WeaponModel(WeaponDatabase.NAME[i], WeaponDatabase.DESCRIPTION[i], WeaponDatabase.TYPE[i], WeaponDatabase.ATK[i], WeaponDatabase.ACC[i], WeaponDatabase.CRIT[i], WeaponDatabase.PRICE[i]);
+        }
     }
 }

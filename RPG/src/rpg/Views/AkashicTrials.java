@@ -32,21 +32,15 @@ public class AkashicTrials {
     
     private void setup() {
         // Generating controllers
-        MobController mob = new MobController();
-        ItemController item = new ItemController();
-        BossController boss = new BossController();
-        WeaponController weapon = new WeaponController();
-        ArmorController armor = new ArmorController();
-        MagicController magic = new MagicController();
         InventoryController inventory = new InventoryController();
         
         // Generating Databases
-        mob.generateMobs();
-        boss.generateBosses();
-        item.generateItems();
-        weapon.generateWeapons();
-        armor.generateArmors();
-        magic.generateMagic();
+        MobModel.generateMobs();
+        BossModel.generateBosses();
+        ItemModel.generateItems();
+        WeaponModel.generateWeapons();
+        ArmorModel.generateArmors();
+        MagicModel.generateMagic();
         inventory.setUpInventory();
     }
     private void createHero() {

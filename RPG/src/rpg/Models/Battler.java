@@ -47,4 +47,52 @@ class Battler {
         this.M_DEF = (this.WIS * 3) / 2;
         this.SPD = (this.DEX * 3) / 2;
     }
+    
+    public int getSTR() {
+        return STR;
+    }
+    public int getCON() {
+        return CON;
+    }
+    public int getDEX() {
+        return DEX;
+    }
+    public int getINT() {
+        return INT;
+    }
+    public int getWIS() {
+        return WIS;
+    }
+    public int getLUC() {
+        return LUC;
+    }
+    
+    public int getHP() {
+        return HP;
+    }
+    public int getMaxHP() {
+        return MAX_HP;
+    }
+    public int getMP() {
+        return MP;
+    }
+    public int getMaxMP() {
+        return MAX_MP;
+    }
+    
+    public int getATK() {
+        return ATK;
+    }
+    public int getDEF() {
+        return DEF;
+    }
+    public int getMAtk() {
+        return M_ATK;
+    }
+    public int getMDef() {
+        return M_DEF;
+    }
+    public int getSPD() {
+        return SPD;
+    }
 }

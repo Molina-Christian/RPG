@@ -5,6 +5,8 @@
  */
 package rpg.Models;
 
+import rpg.Databases.BossDatabase;
+
 /**
  *
  * @author Christian
@@ -26,5 +28,14 @@ public class BossModel {
         this.intelligence = Int;
         this.wisdom = wis;
         this.luck = luc;
+    }
+    
+    //Accessing Database
+    public static BossModel[] bosses = new BossModel[BossDatabase.NAME.length];
+    
+    public static void generateBosses() {
+        for (int i=0; i<bosses.length;i++) {
+            bosses[i] = new BossModel(BossDatabase.NAME[i], BossDatabase.STR[i], BossDatabase.CON[i], BossDatabase.DEX[i], BossDatabase.INT[i], BossDatabase.WIS[i], BossDatabase.LUC[i]);
+        }
     }
 }

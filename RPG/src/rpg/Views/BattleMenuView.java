@@ -34,20 +34,20 @@ public class BattleMenuView {
             if (!BattleController.mobDefend.equals(true)) {
             } else {
                 BattleController.mobDefend = false;
-                PartyController.party[0].DEF = PartyController.party[0].DEF / 2;
+                PartyController.party[0].DEF = PartyController.party[0].getDEF() / 2;
             }
             if (run.equals(true)) {
                 break;
-            } else if (PartyController.party[0].HP <= 0) {
+            } else if (PartyController.party[0].getHP() <= 0) {
                 break;
             }
             BattleController.enemyTurn();
             if (!BattleController.playerDefend.equals(true)) {
             } else {
                 BattleController.playerDefend = false;
-                AkashicTrials.hero.DEF = AkashicTrials.hero.DEF / 2;
+                AkashicTrials.hero.DEF = AkashicTrials.hero.getDEF() / 2;
             }
-            if (AkashicTrials.hero.HP <= 0) {
+            if (AkashicTrials.hero.getHP() <= 0) {
                 break;
             }
         }
@@ -92,16 +92,16 @@ public class BattleMenuView {
         System.out.println("*****************************");
         System.out.println();
         System.out.println("Player:");
-        System.out.println(AkashicTrials.hero.nickName);
-        System.out.println("HP: " + AkashicTrials.hero.HP + "/" + AkashicTrials.hero.MAX_HP);
-        System.out.println("MP: " + AkashicTrials.hero.MP + "/" + AkashicTrials.hero.MAX_MP);
+        System.out.println(AkashicTrials.hero.getNick());
+        System.out.println("HP: " + AkashicTrials.hero.getHP() + "/" + AkashicTrials.hero.getMaxHP());
+        System.out.println("MP: " + AkashicTrials.hero.getMP() + "/" + AkashicTrials.hero.getMaxMP());
         System.out.println();
         System.out.println("Enemy:");
         for (int i=0;i<PartyController.party.length;i++) {
             if (PartyController.party[i] != null) {
-                System.out.println(PartyController.party[i].NAME);
-                System.out.println("HP: " + PartyController.party[i].HP + "/" + PartyController.party[i].MAX_HP);
-                System.out.println("MP: " + PartyController.party[i].MP + "/" + PartyController.party[i].MAX_MP);
+                System.out.println(PartyController.party[i].getName());
+                System.out.println("HP: " + PartyController.party[i].getHP() + "/" + PartyController.party[i].getMaxHP());
+                System.out.println("MP: " + PartyController.party[i].getMP() + "/" + PartyController.party[i].getMaxMP());
                 System.out.println();
             }
         }
