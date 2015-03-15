@@ -14,20 +14,15 @@ import rpg.Models.*;
  *
  * @author Christian
  */
-public class AkashicTrials {
+public class Game {
     static String intro = "Akasha Trials\ncreated by Christian";
     public static PlayerModel hero;
     
     public static int time = 1;
     public static int day = 1;
     
-    public AkashicTrials() {
-        // Introduction
+    public Game() {
         this.setup();
-        System.out.println(intro);
-        System.out.println();
-        this.createHero();
-        ThaoView.getInput(0);
     }
     
     private void setup() {
@@ -74,6 +69,6 @@ public class AkashicTrials {
                 correct = true;
             }
         }
-        AkashicTrials.hero = new PlayerModel(word1, word2, word3, 5, 5, 5, 5, 5, 5);
+        Game.hero = new PlayerModel(word1, word2, word3, 5, 5, 5, 5, 5, 5);
     }
 }

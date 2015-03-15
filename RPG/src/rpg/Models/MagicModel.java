@@ -171,4 +171,46 @@ public class MagicModel extends DescriptionModel {
             }
         }
     }
+    
+    public static String magicFrame(int what) {
+        String display = "";
+        switch (what) {
+            case 1:
+                for (MagicModel Magic : inventoryMagic[0]) {
+                    if (!(Magic == null)) {
+                        display += Magic.getName() + "\n";
+                    } else {
+                        display = "No magic of this type learned!";
+                    }
+                }
+                break;
+            case 2:
+                for (MagicModel Magic : inventoryMagic[1]) {
+                    if (!(Magic == null)) {
+                        display += Magic.getName() + "\n";
+                    } else {
+                        display = "No magic of this type learned!";
+                    }
+                }
+                break;
+            case 3:
+                for (MagicModel Magic : inventoryMagic[2]) {
+                    if (!(Magic == null)) {
+                        display += Magic.getName() + "\n";
+                    } else {
+                        display = "No magic of this type learned!";
+                    }
+                }
+                break;
+            case 4:
+                for (MagicModel Magic : inventoryMagic[3]) {
+                    if (!(Magic == null)) {
+                        display += Magic.getName() + "\n";
+                    } else {
+                        display = "No magic of this type learned!";
+                    }
+                }
+        }
+        return display;
+    }
 }

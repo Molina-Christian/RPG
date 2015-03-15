@@ -5,7 +5,7 @@
  */
 package rpg.Controllers;
 
-import rpg.Views.AkashicTrials;
+import rpg.Views.Game;
 import java.util.Scanner;
 
 /**
@@ -16,11 +16,11 @@ public class EventController {
     Scanner input = new Scanner(System.in);
     
     public void forwardTime() {
-        if (AkashicTrials.time < 24) {
-            AkashicTrials.time++;
-        } else if (AkashicTrials.time >= 24) {
-            AkashicTrials.time = 1;
-            AkashicTrials.day++;
+        if (Game.time < 24) {
+            Game.time++;
+        } else if (Game.time >= 24) {
+            Game.time = 1;
+            Game.day++;
         }
     }
     

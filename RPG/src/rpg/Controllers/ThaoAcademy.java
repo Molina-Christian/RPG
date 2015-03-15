@@ -10,8 +10,29 @@ package rpg.Controllers;
  * @author Christian
  */
 public class ThaoAcademy {
-    public void talk(int where) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    String talk;
+    public String getTalk(int where) {
+        switch (where) {
+            case 0:
+                talk = "\n\nI am talking outside.";
+                break;
+            case 1:
+                talk = "\n\nI am talking inside.";
+                break;
+            case 2:
+                talk = "\n\nI am talking at the dorms.";
+                break;
+            case 3:
+                talk = "\n\nI am talking in the cafeteria.";
+                break;
+            case 4:
+                talk = "\n\nI am talking in the teleporter.";
+                break;
+            case 5:
+                talk = "\n\nI am talking in the market.";
+                break;
+        }
+        return talk;
     }
     public void goToClass() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

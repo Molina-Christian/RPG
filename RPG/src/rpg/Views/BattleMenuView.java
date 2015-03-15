@@ -45,9 +45,9 @@ public class BattleMenuView {
             if (!BattleController.playerDefend.equals(true)) {
             } else {
                 BattleController.playerDefend = false;
-                AkashicTrials.hero.DEF = AkashicTrials.hero.getDEF() / 2;
+                Game.hero.DEF = Game.hero.getDEF() / 2;
             }
-            if (AkashicTrials.hero.getHP() <= 0) {
+            if (Game.hero.getHP() <= 0) {
                 break;
             }
         }
@@ -92,9 +92,9 @@ public class BattleMenuView {
         System.out.println("*****************************");
         System.out.println();
         System.out.println("Player:");
-        System.out.println(AkashicTrials.hero.getNick());
-        System.out.println("HP: " + AkashicTrials.hero.getHP() + "/" + AkashicTrials.hero.getMaxHP());
-        System.out.println("MP: " + AkashicTrials.hero.getMP() + "/" + AkashicTrials.hero.getMaxMP());
+        System.out.println(Game.hero.getNick());
+        System.out.println("HP: " + Game.hero.getHP() + "/" + Game.hero.getMaxHP());
+        System.out.println("MP: " + Game.hero.getMP() + "/" + Game.hero.getMaxMP());
         System.out.println();
         System.out.println("Enemy:");
         for (int i=0;i<PartyController.party.length;i++) {
