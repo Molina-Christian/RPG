@@ -41,7 +41,11 @@ public class ThaoAcademy {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     public void room() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Game.time += 8;
+        if (Game.time > 24) {
+            Game.day++;
+            Game.time -= 24;
+        }
     }
     public void teleport() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

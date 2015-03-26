@@ -6,29 +6,37 @@
 package rpg.Frames;
 
 import java.util.Arrays;
-import rpg.Databases.ThaoDatabase;
-import rpg.Main;
-import rpg.Models.PlayerModel;
-import rpg.Views.Game;
+import rpg.Databases.Thao;
+import rpg.Models.Player;
+import rpg.Controllers.Game;
 
 /**
  *
  * @author Christian
  */
 public class AkashicTrials extends javax.swing.JFrame {
-    public static final Thao thao = new Thao();
+    public static final Towns town = new Towns(0);
     public static final Outside outside = new Outside();
     public static final PauseMenu pause = new PauseMenu();
-    public static PlayerModel hero;
+    public static final Save_Load save = new Save_Load();
+    public static final AkashicTrials game = new AkashicTrials();
+    public static final Battles battle = new Battles();
+    public static Player hero;
     
     /**
      * Creates new form AkashicTrials
      */
     public AkashicTrials() {
-        thao.setVisible(false);
+        this.setLocation(350, 200);
+        town.setVisible(false);
         outside.setVisible(false);
         pause.setVisible(false);
+        save.setVisible(false);
         initComponents();
+        optionsFrame.setVisible(false);
+        nameEntry.setVisible(false);
+        titleFrame.setVisible(true);
+        startMenu.setVisible(true);
     }
 
     /**
@@ -40,10 +48,10 @@ public class AkashicTrials extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        display = new javax.swing.JTextArea();
-        jPanel2 = new javax.swing.JPanel();
+        titleFrame = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        nameEntry = new javax.swing.JPanel();
         firstName_entry = new javax.swing.JTextField();
         lastName_entry = new javax.swing.JTextField();
         nickName_entry = new javax.swing.JTextField();
@@ -51,31 +59,54 @@ public class AkashicTrials extends javax.swing.JFrame {
         firstName = new javax.swing.JLabel();
         lastName = new javax.swing.JLabel();
         nickName = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        clearButton = new javax.swing.JButton();
+        startMenu = new javax.swing.JPanel();
+        startButton = new javax.swing.JButton();
+        loadButton = new javax.swing.JButton();
+        optionsButton = new javax.swing.JButton();
+        optionsFrame = new javax.swing.JPanel();
+        backButton = new javax.swing.JButton();
+        defaultButton = new javax.swing.JButton();
+        confirmButton = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Akashic Trials");
 
-        display.setEditable(false);
-        display.setColumns(20);
-        display.setRows(5);
-        display.setText("\n\n\n\t     Akashic Trials\n\t      by Christian");
-        jScrollPane1.setViewportView(display);
+        titleFrame.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 312, Short.MAX_VALUE)
-                .addContainerGap())
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel1.setText("Akashic Trials");
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel2.setText("by Christian");
+
+        javax.swing.GroupLayout titleFrameLayout = new javax.swing.GroupLayout(titleFrame);
+        titleFrame.setLayout(titleFrameLayout);
+        titleFrameLayout.setHorizontalGroup(
+            titleFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(titleFrameLayout.createSequentialGroup()
+                .addGroup(titleFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(titleFrameLayout.createSequentialGroup()
+                        .addGap(158, 158, 158)
+                        .addComponent(jLabel2))
+                    .addGroup(titleFrameLayout.createSequentialGroup()
+                        .addGap(130, 130, 130)
+                        .addComponent(jLabel1)))
+                .addContainerGap(141, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
+        titleFrameLayout.setVerticalGroup(
+            titleFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(titleFrameLayout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel2)
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
-        jScrollPane1.getAccessibleContext().setAccessibleName("display");
+        nameEntry.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         firstName_entry.setName("firstName_ENTRY"); // NOI18N
 
@@ -92,46 +123,165 @@ public class AkashicTrials extends javax.swing.JFrame {
 
         nickName.setText("Nickname");
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel3.setText("Please enter a name for your hero:");
+
+        clearButton.setText("Clear");
+        clearButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clearButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout nameEntryLayout = new javax.swing.GroupLayout(nameEntry);
+        nameEntry.setLayout(nameEntryLayout);
+        nameEntryLayout.setHorizontalGroup(
+            nameEntryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, nameEntryLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(nameEntryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, nameEntryLayout.createSequentialGroup()
+                        .addGroup(nameEntryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(firstName)
                             .addComponent(lastName)
                             .addComponent(nickName))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(18, 18, 18)
+                        .addGroup(nameEntryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lastName_entry)
-                            .addComponent(nickName_entry)
-                            .addComponent(firstName_entry)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(submit)))
+                            .addComponent(firstName_entry)
+                            .addComponent(nickName_entry))))
                 .addContainerGap())
+            .addGroup(nameEntryLayout.createSequentialGroup()
+                .addGap(124, 124, 124)
+                .addComponent(submit)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(clearButton, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(145, Short.MAX_VALUE))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        nameEntryLayout.setVerticalGroup(
+            nameEntryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, nameEntryLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 18, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(nameEntryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(firstName_entry, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(firstName))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(nameEntryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lastName_entry, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lastName))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(nameEntryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nickName_entry, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(nickName))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(submit)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(nameEntryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(submit)
+                    .addComponent(clearButton))
+                .addContainerGap())
+        );
+
+        startMenu.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        startButton.setText("New Game");
+        startButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                startButtonActionPerformed(evt);
+            }
+        });
+
+        loadButton.setText("Load Game");
+        loadButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loadButtonActionPerformed(evt);
+            }
+        });
+
+        optionsButton.setText("Options");
+        optionsButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                optionsButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout startMenuLayout = new javax.swing.GroupLayout(startMenu);
+        startMenu.setLayout(startMenuLayout);
+        startMenuLayout.setHorizontalGroup(
+            startMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(startMenuLayout.createSequentialGroup()
+                .addGap(144, 144, 144)
+                .addGroup(startMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(startButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(loadButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(optionsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(164, Short.MAX_VALUE))
+        );
+        startMenuLayout.setVerticalGroup(
+            startMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(startMenuLayout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addComponent(startButton)
+                .addGap(18, 18, 18)
+                .addComponent(loadButton)
+                .addGap(18, 18, 18)
+                .addComponent(optionsButton)
+                .addContainerGap(28, Short.MAX_VALUE))
+        );
+
+        backButton.setText("Back");
+        backButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backButtonActionPerformed(evt);
+            }
+        });
+
+        defaultButton.setText("Default");
+        defaultButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                defaultButtonActionPerformed(evt);
+            }
+        });
+
+        confirmButton.setText("Confirm");
+        confirmButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                confirmButtonActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setText("No options currently available...");
+
+        javax.swing.GroupLayout optionsFrameLayout = new javax.swing.GroupLayout(optionsFrame);
+        optionsFrame.setLayout(optionsFrameLayout);
+        optionsFrameLayout.setHorizontalGroup(
+            optionsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(optionsFrameLayout.createSequentialGroup()
+                .addGroup(optionsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(optionsFrameLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(defaultButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(confirmButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(backButton))
+                    .addGroup(optionsFrameLayout.createSequentialGroup()
+                        .addGap(127, 127, 127)
+                        .addComponent(jLabel4)))
+                .addContainerGap(131, Short.MAX_VALUE))
+        );
+        optionsFrameLayout.setVerticalGroup(
+            optionsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, optionsFrameLayout.createSequentialGroup()
+                .addGap(56, 56, 56)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 158, Short.MAX_VALUE)
+                .addGroup(optionsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(backButton)
+                    .addComponent(defaultButton)
+                    .addComponent(confirmButton))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -141,31 +291,89 @@ public class AkashicTrials extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(titleFrame, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(nameEntry, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(startMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(optionsFrame, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addComponent(titleFrame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(nameEntry, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addContainerGap(115, Short.MAX_VALUE)
+                    .addComponent(startMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap()))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(optionsFrame, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void submitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitActionPerformed
-        hero = new PlayerModel(firstName_entry.getText(), lastName_entry.getText(), nickName_entry.getText(), 5, 5, 5, 5, 5, 5);
-        
-        thao.setTitle(ThaoDatabase.getName(0));
-        thao.display.setText(ThaoDatabase.getDesc(0));
-        thao.choices.setText(Main.convertArray(Thao.OUTSIDE));
-        thao.setVisible(true);
+        hero = new Player(firstName_entry.getText(), lastName_entry.getText(), nickName_entry.getText(), 5, 5, 5, 5, 5, 5);
+        town.setTitle(town.getName(0));
+        town.display.setText(town.getDesc(0));
+        town.dayVar.setText(town.convertDay(Game.day));
+        town.timeVar.setText(town.convertTime(Game.time));
+        town.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_submitActionPerformed
+
+    private void startButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startButtonActionPerformed
+        startMenu.setVisible(false);
+        nameEntry.setVisible(true);
+    }//GEN-LAST:event_startButtonActionPerformed
+
+    private void loadButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadButtonActionPerformed
+        save.setPrevious(this);
+        save.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_loadButtonActionPerformed
+
+    private void optionsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_optionsButtonActionPerformed
+        titleFrame.setVisible(false);
+        startMenu.setVisible(false);
+        optionsFrame.setVisible(true);
+    }//GEN-LAST:event_optionsButtonActionPerformed
+
+    private void clearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearButtonActionPerformed
+        firstName_entry.setText("");
+        lastName_entry.setText("");
+        nickName_entry.setText("");
+    }//GEN-LAST:event_clearButtonActionPerformed
+
+    private void defaultButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_defaultButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_defaultButtonActionPerformed
+
+    private void confirmButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_confirmButtonActionPerformed
+
+    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
+        optionsFrame.setVisible(false);
+        titleFrame.setVisible(true);
+        startMenu.setVisible(true);
+    }//GEN-LAST:event_backButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -203,16 +411,27 @@ public class AkashicTrials extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextArea display;
+    private javax.swing.JButton backButton;
+    private javax.swing.JButton clearButton;
+    private javax.swing.JButton confirmButton;
+    private javax.swing.JButton defaultButton;
     private javax.swing.JLabel firstName;
     private javax.swing.JTextField firstName_entry;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel lastName;
     private javax.swing.JTextField lastName_entry;
+    private javax.swing.JButton loadButton;
+    private javax.swing.JPanel nameEntry;
     private javax.swing.JLabel nickName;
     private javax.swing.JTextField nickName_entry;
+    private javax.swing.JButton optionsButton;
+    private javax.swing.JPanel optionsFrame;
+    private javax.swing.JButton startButton;
+    private javax.swing.JPanel startMenu;
     private javax.swing.JButton submit;
+    private javax.swing.JPanel titleFrame;
     // End of variables declaration//GEN-END:variables
 }

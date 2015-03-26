@@ -6,47 +6,57 @@
 package rpg.Frames;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import rpg.Controllers.Game;
-import rpg.Controllers.World;
+import rpg.Controllers.ThaoAcademy;
+import rpg.Databases.*;
 
 /**
  *
  * @author Christian
  */
-public class Outside extends javax.swing.JFrame {
+public class Towns extends javax.swing.JFrame {
     private int townID;
     private int locationID;
     private ArrayList<String> mapItems = new ArrayList<String>();
-    private ArrayList<String> townItems = new ArrayList<String>();
-    public final javax.swing.JFrame previous = this;
-    private final static World out = new World();
-    private static final Battles battle = AkashicTrials.battle;
-    private final static String[][] NAME = {
-        {},
-        {"Cave of Darkness"}
+    private static ThaoAcademy thaoAcademy = new ThaoAcademy();
+    private final static String[] NAME = {
+        "Thao Academy Entrance",
+        "Thao Academy Courtyard",
+        "Thao Academy Dormitory",
+        "Thao Academy Cafeteria",
+        "Thao Academy Teleporter",
+        "Thao Academy Marketplace"
     };
     private final static String[] DESCRIPTION = {
-        "A dark cave entrance stands before you..."
+        "A great wooden gate stands open. You can see many students pass "
+            + "you on their way inside.",
+        "A nice courtyard with a large fountain in the middle of it. You "
+            + "can see students and staff walking around.",
+        "A large stone building with a warm red paint and many windows "
+            + "are visible, some of them closed off with curtains.",
+        "A decent sized cafeteria with a rather overpowering smell of "
+            + "slightly greasy food.",
+        "A mystic design is etched into the floor behind a sturdy wooden "
+            + "barrier. A teacher stand in front of the gate.",
+        "A small marketplace with only a few shops. Clearly not meant "
+            + "for more than a quick resupply location."
     };
     
-    public static String getName(int type, int which) {
-        return NAME[type][which];
+    public static String getName(int which) {
+        return NAME[which];
     }
     public static String getDesc(int which) {
         return DESCRIPTION[which];
     }
     
     /**
-     * Creates new form Outside
+     * Creates new form Towns
      */
-    public Outside() {
+    public Towns(int number) {
         this.setLocation(350, 200);
-        locationID = 0;
+        this.townID = number;
         initComponents();
-        dayVar.setText(this.convertDay(Game.day));
-        timeVar.setText(this.convertTime(Game.time));
-        display.setText(this.getDesc(locationID));
-        this.setTitle(this.getName(1,0));
         map.setVisible(false);
     }
 
@@ -76,10 +86,9 @@ public class Outside extends javax.swing.JFrame {
         locationList = new javax.swing.JComboBox();
         submitButton = new javax.swing.JButton();
         backButton = new javax.swing.JButton();
-        townList = new javax.swing.JComboBox();
-        townSubmit = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Thao Academy Entrance");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -116,8 +125,8 @@ public class Outside extends javax.swing.JFrame {
                 .addComponent(pauseButton))
         );
         jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(pauseButton)
                 .addComponent(dayVar)
                 .addComponent(timeVar)
@@ -223,70 +232,61 @@ public class Outside extends javax.swing.JFrame {
             }
         });
 
-        townSubmit.setText("Submit");
-        townSubmit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                townSubmitActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout mapLayout = new javax.swing.GroupLayout(map);
         map.setLayout(mapLayout);
         mapLayout.setHorizontalGroup(
             mapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(mapLayout.createSequentialGroup()
-                .addGap(159, 159, 159)
-                .addComponent(backButton)
-                .addContainerGap(189, Short.MAX_VALUE))
-            .addGroup(mapLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(mapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(townList, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(locationList, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(mapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(submitButton, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(townSubmit, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addComponent(locationList, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(mapLayout.createSequentialGroup()
+                .addGap(122, 122, 122)
+                .addComponent(submitButton)
+                .addGap(18, 18, 18)
+                .addComponent(backButton)
+                .addContainerGap(143, Short.MAX_VALUE))
         );
         mapLayout.setVerticalGroup(
             mapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(mapLayout.createSequentialGroup()
-                .addContainerGap(85, Short.MAX_VALUE)
+                .addContainerGap(122, Short.MAX_VALUE)
+                .addComponent(locationList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(mapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(townList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(townSubmit))
-                .addGap(39, 39, 39)
-                .addGroup(mapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(locationList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(submitButton))
-                .addGap(36, 36, 36)
-                .addComponent(backButton)
-                .addGap(67, 67, 67))
+                    .addComponent(submitButton)
+                    .addComponent(backButton))
+                .addGap(97, 97, 97))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 20, Short.MAX_VALUE)
-                .addComponent(frameHolder, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(frameHolder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(map, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addComponent(map, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(frameHolder, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(frameHolder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(map, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGap(0, 11, Short.MAX_VALUE)
+                    .addComponent(map, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void mapButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mapButtonActionPerformed
+        frameHolder.setVisible(false);
+        switch (townID) {
+            case 0:
+                this.setMapItems(townID);
+                map.setVisible(true);
+        }
+    }//GEN-LAST:event_mapButtonActionPerformed
 
     private void pauseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pauseButtonActionPerformed
         AkashicTrials.pause.setPrevious(this);
@@ -294,18 +294,12 @@ public class Outside extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_pauseButtonActionPerformed
 
-    private void mapButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mapButtonActionPerformed
-        frameHolder.setVisible(false);
-        this.setMapItems(townID, locationID);
-        map.setVisible(true);
-    }//GEN-LAST:event_mapButtonActionPerformed
-
     private void optionButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_optionButton1ActionPerformed
-        switch (locationID) {
+        switch (townID) {
             case 0:
-            this.updateAll();
-            display.append(out.getTalk(locationID));
-            break;
+                this.updateAll();
+                display.append(thaoAcademy.getTalk(locationID));
+                break;
         }
     }//GEN-LAST:event_optionButton1ActionPerformed
 
@@ -318,44 +312,64 @@ public class Outside extends javax.swing.JFrame {
         this.updateAll();
     }//GEN-LAST:event_optionButton3ActionPerformed
 
-    private void actionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actionButtonActionPerformed
-        switch (locationID) {
-            case 0:
-                this.setVisible(false);
-                battle.initiate();
-                battle.setVisible(true);
-                break;
-        }
-    }//GEN-LAST:event_actionButtonActionPerformed
-
-    private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed
-        int location = locationList.getSelectedIndex();
-        locationID = location;
-        switch (locationID) {
-            case 0:
-            this.updateAll();
-            break;
-        }
-        map.setVisible(false);
-        frameHolder.setVisible(true);
-    }//GEN-LAST:event_submitButtonActionPerformed
-
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         this.updateAll();
         map.setVisible(false);
         frameHolder.setVisible(true);
     }//GEN-LAST:event_backButtonActionPerformed
 
-    private void townSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_townSubmitActionPerformed
-        int town = townList.getSelectedIndex();
-        townID = town;
+    private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed
+        int location = locationList.getSelectedIndex();
+        locationID = location;
         switch (townID) {
             case 0:
-                this.setVisible(false);
-                AkashicTrials.town.setVisible(true);
+                this.updateAll();
+                break;
+            case 1:
+                this.updateAll();
+                break;
+            case 2:
+                this.updateAll();
+                break;
+            case 3:
+                this.updateAll();
+                break;
+            case 4:
+                this.updateAll();
+                break;
+            case 5:
+                this.updateAll();
                 break;
         }
-    }//GEN-LAST:event_townSubmitActionPerformed
+        map.setVisible(false);
+        frameHolder.setVisible(true);
+    }//GEN-LAST:event_submitButtonActionPerformed
+
+    private void actionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actionButtonActionPerformed
+        switch (townID) {
+            case 0:
+                switch (locationID) {
+                    case 0:
+                        this.setVisible(false);
+                        AkashicTrials.outside.setVisible(true);
+                        break;
+                    case 1:
+                        this.updateAll();
+                        display.append("\n\nThere is nothing to do here!");
+                        break;
+                    case 2:
+                        thaoAcademy.room();
+                        this.updateAll();
+                        display.append("\n\nYou went to sleep for 8 hours...");
+                        break;
+                    case 3-5:
+                        this.updateAll();
+                        display.append("\n\nThere is nothing to do here!");
+                        break;
+                }
+                break;
+        }
+    }//GEN-LAST:event_actionButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -374,20 +388,20 @@ public class Outside extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Outside.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Thao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Outside.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Thao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Outside.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Thao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Outside.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Thao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Outside().setVisible(true);
+                new Towns(0).setVisible(true);
             }
         });
     }
@@ -410,22 +424,18 @@ public class Outside extends javax.swing.JFrame {
     private javax.swing.JButton pauseButton;
     private javax.swing.JButton submitButton;
     public javax.swing.JLabel timeVar;
-    private javax.swing.JComboBox townList;
-    private javax.swing.JButton townSubmit;
     // End of variables declaration//GEN-END:variables
-    
-    private void setMapItems(int townID, int locationID) {
+
+    private void setMapItems(int townID) {
         switch (townID) {
             case 0:
-                townList.removeAllItems();
-                townList.addItem("Thao Academy");
-                break;
-        }
-        switch (locationID) {
-            case 0:
                 locationList.removeAllItems();
-                locationList.addItem("Cave of Darkness");
-                break;
+                locationList.addItem("Thao Academy Entrance");
+                locationList.addItem("Thao Academy Courtyard");
+                locationList.addItem("Thao Academy Dormitory");
+                locationList.addItem("Thao Academy Cafeteria");
+                locationList.addItem("Thao Academy Teleporter");
+                locationList.addItem("Thao Academy Marketplace");
         }
     }
 
@@ -438,7 +448,7 @@ public class Outside extends javax.swing.JFrame {
     }
     
     private void updateAll() {
-        this.setTitle(this.getName(1, locationID));
+        this.setTitle(this.getName(locationID));
         display.setText(this.getDesc(locationID));
         dayVar.setText(this.convertDay(Game.day));
         timeVar.setText(this.convertTime(Game.time));

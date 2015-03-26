@@ -5,17 +5,18 @@
  */
 package rpg.Frames;
 
-import rpg.Controllers.InventoryController;
-import rpg.Models.MagicModel;
-import rpg.Views.Game;
+import rpg.Controllers.*;
 
 /**
  *
- * @author Fred and Karen Call
+ * @author Christian
  */
 public class PauseMenu extends javax.swing.JFrame {
-
-    private int quitter = 0;
+    javax.swing.JFrame previous;
+    
+    public void setPrevious(javax.swing.JFrame menu) {
+        this.previous = menu;
+    }
     private String convertDay(int number) {
         String convert = "Day: " + number;
         return convert;
@@ -33,11 +34,11 @@ public class PauseMenu extends javax.swing.JFrame {
      * Creates new form PauseMenu
      */
     public PauseMenu() {
+        this.setLocation(350, 200);
         initComponents();
         itemFrame.setVisible(false);
         magicFrame.setVisible(false);
         statusFrame.setVisible(false);
-        saveFrame.setVisible(false);
         quitFrame.setVisible(false);
         dayVar.setText(this.convertDay(Game.day));
         timeVar.setText(this.convertTime(Game.time));
@@ -53,6 +54,17 @@ public class PauseMenu extends javax.swing.JFrame {
     private void initComponents() {
 
         frameHolder = new javax.swing.JPanel();
+        buttonFrame = new javax.swing.JPanel();
+        itemButton = new javax.swing.JButton();
+        magicButton = new javax.swing.JButton();
+        statusButton = new javax.swing.JButton();
+        saveButton = new javax.swing.JButton();
+        quitButton = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        dayVar = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        timeVar = new javax.swing.JLabel();
+        returnButton = new javax.swing.JButton();
         statusFrame = new javax.swing.JPanel();
         image = new javax.swing.JScrollPane();
         jTextPane1 = new javax.swing.JTextPane();
@@ -96,17 +108,6 @@ public class PauseMenu extends javax.swing.JFrame {
         waterLabel = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         name = new javax.swing.JLabel();
-        buttonFrame = new javax.swing.JPanel();
-        itemButton = new javax.swing.JButton();
-        magicButton = new javax.swing.JButton();
-        statusButton = new javax.swing.JButton();
-        saveButton = new javax.swing.JButton();
-        quitButton = new javax.swing.JButton();
-        jPanel3 = new javax.swing.JPanel();
-        dayVar = new javax.swing.JLabel();
-        jPanel4 = new javax.swing.JPanel();
-        timeVar = new javax.swing.JLabel();
-        returnButton = new javax.swing.JButton();
         itemFrame = new javax.swing.JPanel();
         jTabbedPane2 = new javax.swing.JTabbedPane();
         Items = new javax.swing.JPanel();
@@ -135,14 +136,6 @@ public class PauseMenu extends javax.swing.JFrame {
         Blue = new javax.swing.JPanel();
         jScrollPane10 = new javax.swing.JScrollPane();
         displayBlue = new javax.swing.JTextArea();
-        saveFrame = new javax.swing.JPanel();
-        backButton = new javax.swing.JButton();
-        saveNowButton = new javax.swing.JButton();
-        loadButton = new javax.swing.JButton();
-        saveFile1 = new javax.swing.JToggleButton();
-        saveFile2 = new javax.swing.JToggleButton();
-        saveFile3 = new javax.swing.JToggleButton();
-        title = new javax.swing.JLabel();
         quitFrame = new javax.swing.JInternalFrame();
         text = new javax.swing.JLabel();
         yesButton = new javax.swing.JButton();
@@ -153,6 +146,135 @@ public class PauseMenu extends javax.swing.JFrame {
         setBackground(new java.awt.Color(0, 102, 0));
 
         frameHolder.setBackground(new java.awt.Color(255, 153, 0));
+
+        buttonFrame.setBackground(new java.awt.Color(102, 0, 0));
+        buttonFrame.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        itemButton.setText("Items");
+        itemButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemButtonActionPerformed(evt);
+            }
+        });
+
+        magicButton.setText("Magic");
+        magicButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                magicButtonActionPerformed(evt);
+            }
+        });
+
+        statusButton.setText("Status");
+        statusButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                statusButtonActionPerformed(evt);
+            }
+        });
+
+        saveButton.setText("Save");
+        saveButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveButtonActionPerformed(evt);
+            }
+        });
+
+        quitButton.setText("Quit");
+        quitButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                quitButtonActionPerformed(evt);
+            }
+        });
+
+        jPanel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel3.setPreferredSize(new java.awt.Dimension(50, 50));
+
+        dayVar.setText("1");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(dayVar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 64, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addComponent(dayVar)
+                .addGap(0, 11, Short.MAX_VALUE))
+        );
+
+        jPanel4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel4.setPreferredSize(new java.awt.Dimension(50, 50));
+
+        timeVar.setText("1");
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 64, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(timeVar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 64, Short.MAX_VALUE))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 25, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel4Layout.createSequentialGroup()
+                    .addComponent(timeVar, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 14, Short.MAX_VALUE)))
+        );
+
+        returnButton.setText("Return");
+        returnButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                returnButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout buttonFrameLayout = new javax.swing.GroupLayout(buttonFrame);
+        buttonFrame.setLayout(buttonFrameLayout);
+        buttonFrameLayout.setHorizontalGroup(
+            buttonFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(buttonFrameLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(buttonFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(itemButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(magicButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(statusButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(saveButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(quitButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, buttonFrameLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(buttonFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(buttonFrameLayout.createSequentialGroup()
+                        .addComponent(returnButton)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        buttonFrameLayout.setVerticalGroup(
+            buttonFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(buttonFrameLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(itemButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(magicButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(statusButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(saveButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(returnButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(quitButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
 
         statusFrame.setBackground(new java.awt.Color(102, 51, 0));
         statusFrame.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -428,137 +550,8 @@ public class PauseMenu extends javax.swing.JFrame {
                     .addGroup(statusFrameLayout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTabbedPane1))
+                        .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE))
                     .addComponent(image))
-                .addContainerGap())
-        );
-
-        buttonFrame.setBackground(new java.awt.Color(102, 0, 0));
-        buttonFrame.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
-        itemButton.setText("Items");
-        itemButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                itemButtonActionPerformed(evt);
-            }
-        });
-
-        magicButton.setText("Magic");
-        magicButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                magicButtonActionPerformed(evt);
-            }
-        });
-
-        statusButton.setText("Status");
-        statusButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                statusButtonActionPerformed(evt);
-            }
-        });
-
-        saveButton.setText("Save");
-        saveButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                saveButtonActionPerformed(evt);
-            }
-        });
-
-        quitButton.setText("Quit");
-        quitButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                quitButtonActionPerformed(evt);
-            }
-        });
-
-        jPanel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jPanel3.setPreferredSize(new java.awt.Dimension(50, 50));
-
-        dayVar.setText("1");
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(dayVar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 64, Short.MAX_VALUE)
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(dayVar)
-                .addGap(0, 11, Short.MAX_VALUE))
-        );
-
-        jPanel4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jPanel4.setPreferredSize(new java.awt.Dimension(50, 50));
-
-        timeVar.setText("1");
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 64, Short.MAX_VALUE)
-            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(timeVar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 64, Short.MAX_VALUE))
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 25, Short.MAX_VALUE)
-            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel4Layout.createSequentialGroup()
-                    .addComponent(timeVar, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 14, Short.MAX_VALUE)))
-        );
-
-        returnButton.setText("Return");
-        returnButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                returnButtonActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout buttonFrameLayout = new javax.swing.GroupLayout(buttonFrame);
-        buttonFrame.setLayout(buttonFrameLayout);
-        buttonFrameLayout.setHorizontalGroup(
-            buttonFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(buttonFrameLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(buttonFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(itemButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(magicButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(statusButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(saveButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(quitButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, buttonFrameLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(buttonFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(buttonFrameLayout.createSequentialGroup()
-                        .addComponent(returnButton)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        buttonFrameLayout.setVerticalGroup(
-            buttonFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(buttonFrameLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(itemButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(magicButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(statusButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(saveButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(returnButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(quitButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -724,58 +717,6 @@ public class PauseMenu extends javax.swing.JFrame {
             .addComponent(jTabbedPane3)
         );
 
-        backButton.setText("Back");
-        backButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backButtonActionPerformed(evt);
-            }
-        });
-
-        saveNowButton.setText("Save");
-
-        loadButton.setText("Load");
-
-        title.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        title.setText("Save Menu");
-
-        javax.swing.GroupLayout saveFrameLayout = new javax.swing.GroupLayout(saveFrame);
-        saveFrame.setLayout(saveFrameLayout);
-        saveFrameLayout.setHorizontalGroup(
-            saveFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, saveFrameLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(saveFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(saveFile3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(saveFile2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(saveFile1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, saveFrameLayout.createSequentialGroup()
-                        .addComponent(backButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(saveNowButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(loadButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(title, javax.swing.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        saveFrameLayout.setVerticalGroup(
-            saveFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(saveFrameLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(saveFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(backButton)
-                    .addComponent(saveNowButton)
-                    .addComponent(loadButton)
-                    .addComponent(title, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(saveFile1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(saveFile2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(saveFile3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-
         quitFrame.setVisible(true);
 
         text.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -845,11 +786,6 @@ public class PauseMenu extends javax.swing.JFrame {
             .addGroup(frameHolderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(frameHolderLayout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(saveFrame, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addContainerGap()))
-            .addGroup(frameHolderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(frameHolderLayout.createSequentialGroup()
-                    .addContainerGap()
                     .addComponent(quitFrame)
                     .addContainerGap()))
         );
@@ -870,11 +806,6 @@ public class PauseMenu extends javax.swing.JFrame {
                 .addGroup(frameHolderLayout.createSequentialGroup()
                     .addContainerGap()
                     .addComponent(magicFrame, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addContainerGap()))
-            .addGroup(frameHolderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(frameHolderLayout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(saveFrame, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addContainerGap()))
             .addGroup(frameHolderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(frameHolderLayout.createSequentialGroup()
@@ -905,20 +836,20 @@ public class PauseMenu extends javax.swing.JFrame {
         itemFrame.setVisible(true);
         magicFrame.setVisible(false);
         statusFrame.setVisible(false);
-        displayItem.setText(InventoryController.InventoryFrame(1));
-        displayWeapon.setText(InventoryController.InventoryFrame(2));
-        displayArmor.setText(InventoryController.InventoryFrame(3));
-        displayKey.setText(InventoryController.InventoryFrame(4));
+        displayItem.setText(Inventory.InventoryFrame(1));
+        displayWeapon.setText(Inventory.InventoryFrame(2));
+        displayArmor.setText(Inventory.InventoryFrame(3));
+        displayKey.setText(Inventory.InventoryFrame(4));
     }//GEN-LAST:event_itemButtonActionPerformed
 
     private void magicButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_magicButtonActionPerformed
         itemFrame.setVisible(false);
         magicFrame.setVisible(true);
         statusFrame.setVisible(false);
-        displayBlack.setText(MagicModel.magicFrame(1));
-        displayWhite.setText(MagicModel.magicFrame(2));
-        displayRed.setText(MagicModel.magicFrame(3));
-        displayBlue.setText(MagicModel.magicFrame(4));
+        displayBlack.setText(magic.magicFrame(0));
+        displayWhite.setText(magic.magicFrame(1));
+        displayRed.setText(magic.magicFrame(2));
+        displayBlue.setText(magic.magicFrame(3));
     }//GEN-LAST:event_magicButtonActionPerformed
 
     private void statusButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statusButtonActionPerformed
@@ -947,11 +878,9 @@ public class PauseMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_statusButtonActionPerformed
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
-        saveFrame.setVisible(true);
-        buttonFrame.setVisible(false);
-        statusFrame.setVisible(false);
-        itemFrame.setVisible(false);
-        magicFrame.setVisible(false);
+        AkashicTrials.save.setPrevious(AkashicTrials.pause);
+        AkashicTrials.save.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_saveButtonActionPerformed
 
     private void quitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quitButtonActionPerformed
@@ -963,13 +892,8 @@ public class PauseMenu extends javax.swing.JFrame {
 
     private void returnButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnButtonActionPerformed
         AkashicTrials.pause.setVisible(false);
-        AkashicTrials.thao.setVisible(true);
+        previous.setVisible(true);
     }//GEN-LAST:event_returnButtonActionPerformed
-
-    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
-        saveFrame.setVisible(false);
-        buttonFrame.setVisible(true);
-    }//GEN-LAST:event_backButtonActionPerformed
 
     private void yesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_yesButtonActionPerformed
         System.exit(0);
@@ -1027,7 +951,6 @@ public class PauseMenu extends javax.swing.JFrame {
     private javax.swing.JPanel affinity;
     private javax.swing.JTextField air;
     private javax.swing.JLabel airLabel;
-    private javax.swing.JButton backButton;
     private javax.swing.JPanel buttonFrame;
     private javax.swing.JTextField con;
     private javax.swing.JLabel conLabel;
@@ -1079,7 +1002,6 @@ public class PauseMenu extends javax.swing.JFrame {
     private javax.swing.JTextPane jTextPane1;
     private javax.swing.JPanel level;
     private javax.swing.JLabel levelLabel;
-    private javax.swing.JButton loadButton;
     private javax.swing.JTextField luc;
     private javax.swing.JLabel lucLabel;
     private javax.swing.JButton magicButton;
@@ -1092,11 +1014,6 @@ public class PauseMenu extends javax.swing.JFrame {
     private javax.swing.JInternalFrame quitFrame;
     private javax.swing.JButton returnButton;
     private javax.swing.JButton saveButton;
-    private javax.swing.JToggleButton saveFile1;
-    private javax.swing.JToggleButton saveFile2;
-    private javax.swing.JToggleButton saveFile3;
-    private javax.swing.JPanel saveFrame;
-    private javax.swing.JButton saveNowButton;
     private javax.swing.JPanel stat;
     private javax.swing.JButton statusButton;
     private javax.swing.JPanel statusFrame;
@@ -1104,7 +1021,6 @@ public class PauseMenu extends javax.swing.JFrame {
     private javax.swing.JLabel strLabel;
     private javax.swing.JLabel text;
     private javax.swing.JLabel timeVar;
-    private javax.swing.JLabel title;
     private javax.swing.JTextField water;
     private javax.swing.JLabel waterLabel;
     private javax.swing.JTextField wis;
